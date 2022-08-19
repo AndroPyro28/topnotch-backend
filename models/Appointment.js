@@ -190,7 +190,7 @@ class Appointment {
         return data;
       });
 
-      console.log(formattedData)
+      // console.log(formattedData)
       return formattedData;
     } catch (error) {
       console.error(error.message);
