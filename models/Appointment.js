@@ -183,13 +183,13 @@ class Appointment {
         "approved",
       ]);
 
-      console.log(result)
       const formattedData = result?.map((data) => {
         data.customer = JSON.parse(data.customer);
         data.appointment = JSON.parse(data.appointment);
         return data;
       });
 
+      console.log(formattedData)
       return formattedData;
     } catch (error) {
       console.error(error.message);
