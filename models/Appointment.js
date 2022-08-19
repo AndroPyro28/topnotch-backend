@@ -185,8 +185,8 @@ class Appointment {
 
       const formattedData = result?.map((data) => {
         console.log(data)
-        data.customer = JSON.parse(data.customer);
-        data.appointment = JSON.parse(data.appointment);
+        // data.customer = JSON.parse(data.customer);
+        // data.appointment = JSON.parse(data.appointment);
         return data;
       });
 
