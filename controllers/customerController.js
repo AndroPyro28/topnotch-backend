@@ -241,12 +241,12 @@ module.exports.checkout = async (req, res) => {
           "x-public-key": process.env.GCASH_API_KEY,
           amount: `1`, // ${totalAmount}
           description: "Payment for services rendered",
-          redirectsuccessurl: `${process.env.CLIENT_URL}customer/payment=success`,
-          redirectfailurl: `${process.env.CLIENT_URL}/customer/cart`,
+          redirectsuccessurl: `${process.env.CLIENT_URL_DEV}/customer/payment=success`,
+          redirectfailurl: `${process.env.CLIENT_URL_DEV}/customer/cart`,
           customeremail: `${req.currentUser?.email}`,
           customermobile: `${req.currentUser?.phoneNo}`,
           customername: `${req.currentUser?.firstname} ${req.currentUser?.lastname}`,
-          webhooksuccessurl:`${process.env.CLIENT_URL}/customer/gcashTriggered`
+          webhooksuccessurl:`${process.env.CLIENT_URL_DEV}/customer/gcashTriggered`
         },
       };
       request(options, function (error, response) {
@@ -285,8 +285,8 @@ module.exports.checkout = async (req, res) => {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.CLIENT_URL}/customer/payment=success`,
-        cancel_url: `${process.env.CLIENT_URL}/customer/cart`,
+        success_url: `${process.env.CLIENT_URL_DEV}/customer/payment=success`,
+        cancel_url: `${process.env.CLIENT_URL_DEV}/customer/cart`,
       });
 
       return res.status(200).json({

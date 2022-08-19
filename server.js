@@ -35,7 +35,6 @@ const server = require('http').createServer(app);
 // return res.json(paymentIntents)
 // })
 
-
 app.get('/api/auth', verifyUser, (req, res) => {
     try {
             return res.status(200).json({
