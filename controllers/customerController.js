@@ -247,7 +247,7 @@ module.exports.checkout = async (req, res) => {
           customeremail: `${req.currentUser?.email}`,
           customermobile: `${req.currentUser?.phoneNo}`,
           customername: `${req.currentUser?.firstname} ${req.currentUser?.lastname}`,
-          // webhooksuccessurl:`${process.env.CLIENT_URL_PROD}/customer/gcashTriggered`
+           webhooksuccessurl:`${process.env.SERVER_URI_PROD}/api/customer/gcashTriggered`
         },
       };
       request(options, function (error, response) {
