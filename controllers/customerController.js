@@ -446,5 +446,5 @@ module.exports.getOrderByReference = async (req, res) => {
 }
 
 module.exports.gcashTriggered = async (req, res) => {
-  console.log(':::::gcash triggered api::::', req)
+  console.log(':::::GCASH API POST::::', req.body)
 }
