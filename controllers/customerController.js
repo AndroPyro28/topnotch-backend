@@ -254,10 +254,8 @@ module.exports.checkout = async (req, res) => {
         if (error) throw new Error(error);
 
         const { data } = JSON.parse(response.body);
-        console.log('body', response.body)
 
         const { checkouturl, hash } = data;
-        console.log('data', data)
 
         return res.status(200).json({
           proceedPayment: true,

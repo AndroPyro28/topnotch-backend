@@ -128,6 +128,7 @@ class SocketControllers {
 
   disconnect = async () => {
     try {
+      console.log('disconnected')
       if (this.#currentUser?.user_type == "admin" && myRoomLink != "") {
         const updateQuery = `UPDATE appointments a
                     INNER JOIN live_streams ls
