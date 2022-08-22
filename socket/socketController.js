@@ -15,7 +15,6 @@ class SocketControllers {
   }
 
   joinRoom = async ({ room, headers, userId }) => {
-    console.log(room);
     // this.#currentUser = await verifySocket(headers);
     // if (!this.#currentUser) return;
 
@@ -50,6 +49,8 @@ class SocketControllers {
   };
 
   leaveRoom = ({currentUser: user, currentRoom: room}) => {
+    myRoomLink = '';
+
     this.#io.to(room).emit("someOneLeaved", { user });
   }
 
@@ -107,13 +108,10 @@ class SocketControllers {
         ]);
 
         const rooms = result.map(room => {
-          // room.roomInfo = DataJsonParser(room.roomInfo);
           const index = allRooms.findIndex(
             (r) => r.roomLink == room.roomInfo.room_link
           );
           room.roomInfo.attendees = allRooms[index].users.length;
-          // room.ownerInfo = DataJsonParser(room.ownerInfo);
-          // room.groomerInfo = DataJsonParser(room.groomerInfo);
 
           return room;
         });
@@ -128,7 +126,6 @@ class SocketControllers {
 
   disconnect = async () => {
     try {
-      console.log('disconnected', this.#currentUser)
       if (this.#currentUser?.user_type == "admin" && myRoomLink != "") {
         const updateQuery = `UPDATE appointments a
                     INNER JOIN live_streams ls
