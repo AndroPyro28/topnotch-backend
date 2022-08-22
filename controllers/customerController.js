@@ -354,6 +354,7 @@ module.exports.addAppointment = async (req, res) => {
 
 module.exports.payment = async (req, res) => {
   try {
+    console.log('called:::::::::::::::::::')
     const { checkoutProducts, method, orderId, totalAmount, billingInfo } =
       req.body.values;
     const productModel = new Product({});
