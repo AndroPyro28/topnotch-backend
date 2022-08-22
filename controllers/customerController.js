@@ -242,12 +242,12 @@ module.exports.checkout = async (req, res) => {
           "x-public-key": process.env.GCASH_API_KEY,
           amount: `1`,
           description: "Payment for services rendered",
-          redirectsuccessurl: `${process.env.CLIENT_URL_PROD}/customer/payment=success`,
+          redirectsuccessurl: `${process.env.CLIENT_URL_PROD}/customer/payment`,
           redirectfailurl: `${process.env.CLIENT_URL_PROD}/customer/cart`,
           customeremail: `${req.currentUser?.email}`,
           customermobile: `${req.currentUser?.phoneNo}`,
           customername: `${req.currentUser?.firstname} ${req.currentUser?.lastname}`,
-          webhooksuccessurl:`${process.env.SERVER_URI_PROD}/api/customer/gcashTriggered`
+          webhooksuccessurl:`${process.env.SERVER_URI_PROD}/api/customer/paymentsuccess`
         },
       };
       request(options, function (error, response) {
@@ -286,7 +286,7 @@ module.exports.checkout = async (req, res) => {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.CLIENT_URL}/customer/payment=success`,
+        success_url: `${process.env.CLIENT_URL}/customer/payment`,
         cancel_url: `${process.env.CLIENT_URL}/customer/cart`,
       });
 
@@ -443,6 +443,6 @@ module.exports.getOrderByReference = async (req, res) => {
   }
 }
 
-module.exports.gcashTriggered = async (req, res) => {
+module.exports.paymentsuccess = async (req, res) => {
   console.log(':::::GCASH API POST::::', req.body)
 }
