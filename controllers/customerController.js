@@ -230,6 +230,9 @@ module.exports.updateItemQuantity = async (req, res) => {
 module.exports.checkout = async (req, res) => {
   const { checkoutType } = req.params; // card
   const { checkoutProducts, totalAmount } = req.body.values;
+
+  console.log(req.params, req.body.values)
+  
   try {
     if (checkoutType === "gcash") {
       var request = require("request");
