@@ -232,7 +232,7 @@ module.exports.checkout = async (req, res) => {
   const { checkoutProducts, totalAmount } = req.body.values;
 
   console.log(req.params, req.body.values)
-  
+
   try {
     if (checkoutType === "gcash") {
       var request = require("request");
@@ -242,7 +242,7 @@ module.exports.checkout = async (req, res) => {
         url: "https://g.payx.ph/payment_request",
         formData: {
           "x-public-key": process.env.GCASH_API_KEY,
-          amount: `1`, // ${totalAmount}
+          amount: `1`,
           description: "Payment for services rendered",
           redirectsuccessurl: `${process.env.CLIENT_URL_PROD}/customer/payment=success`,
           redirectfailurl: `${process.env.CLIENT_URL_PROD}/customer/cart`,
@@ -268,9 +268,8 @@ module.exports.checkout = async (req, res) => {
         });
       });
     }
-    if (checkoutType === "card") {
-      const dollarRate = 56.39;
 
+    if (checkoutType === "card") {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         mode: "payment",
