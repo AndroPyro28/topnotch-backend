@@ -25,6 +25,6 @@ module.exports.validateProducts = async (req, res, next) => {
     
       next();
   } catch (error) {
-    console.error(error.message);
+    console.error('validate', error.message);
   }
 }
