@@ -45,8 +45,6 @@ class SocketControllers {
   };
 
   leaveRoom = ({currentUser: user, currentRoom: room}) => {
-    myRoomLink = '';
-
     this.#io.to(room).emit("someOneLeaved", { user });
   }
 
