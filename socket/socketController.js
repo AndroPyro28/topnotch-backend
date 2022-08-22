@@ -1,6 +1,4 @@
-const { verifySocket } = require("../middlewares/verifySocket");
 const poolConnection = require("../config/connectDB");
-const { DataJsonParser } = require("../helpers/DataJsonParser");
 let myRoomLink = "";
 
 class SocketControllers {
@@ -15,8 +13,6 @@ class SocketControllers {
   }
 
   joinRoom = async ({ room, headers, userId }) => {
-    // this.#currentUser = await verifySocket(headers);
-    // if (!this.#currentUser) return;
 
     this.#socket.join(room);
 
