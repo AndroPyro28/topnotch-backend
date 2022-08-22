@@ -297,7 +297,6 @@ module.exports.startStreaming = async (req, res) => {
 module.exports.appointmentCompleted = async (req, res) => {
   try {
     const {link:reference_id, } = req.params;
-    console.log(req.params, req.body.values)
     const {video_url} = req.body.values;
     const cloudinaryResult = await uploadOne(video_url);
 
@@ -308,6 +307,7 @@ module.exports.appointmentCompleted = async (req, res) => {
       throw new Error('something went wrong...')
     }
 
+    console.log('appointmentCompleted',multipleQueryResult)
     return res.status(200).json({
       msg: 'completed',
       success:true
