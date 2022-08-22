@@ -4,6 +4,9 @@ const router = express.Router();
 const customerController = require('../controllers/customerController');
 const { validateProducts } = require('../middlewares/checkout');
 const {verifyUser} = require('../middlewares/verifyUser')
+
+
+
 router.post('/signup', customerController.signup)
 router.post('/login', customerController.login)
 router.post('/updateInfo', verifyUser, customerController.updateInfo)
