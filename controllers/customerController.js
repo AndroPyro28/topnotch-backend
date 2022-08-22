@@ -231,8 +231,6 @@ module.exports.checkout = async (req, res) => {
   const { checkoutType } = req.params; // card
   const { checkoutProducts, totalAmount } = req.body.values;
 
-  console.log(req.params, req.body.values)
-
   try {
     if (checkoutType === "gcash") {
       var request = require("request");
@@ -256,8 +254,11 @@ module.exports.checkout = async (req, res) => {
         if (error) throw new Error(error);
 
         const { data } = JSON.parse(response.body);
+        console.log('body', response.body)
 
         const { checkouturl, hash } = data;
+        console.log('data', data)
+
         return res.status(200).json({
           proceedPayment: true,
           method: checkoutType,
