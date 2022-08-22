@@ -296,10 +296,11 @@ module.exports.startStreaming = async (req, res) => {
 
 module.exports.appointmentCompleted = async (req, res) => {
   try {
-    const {link:reference_id, } = req.params
+    const {link:reference_id, } = req.params;
+    console.log(req.params, req.body.values)
     const {video_url} = req.body.values;
     const cloudinaryResult = await uploadOne(video_url);
-    
+
     const multipleTable = new MultipleTable();
     const multipleQueryResult = await multipleTable.liveStreamCompleted({reference_id, video_url: cloudinaryResult.url})
 
