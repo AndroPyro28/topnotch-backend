@@ -384,7 +384,6 @@ module.exports.payment = async (req, res) => {
 
     return res.status(201).json({
       msg: "Payment successful",
-      result: {method, orderId, totalAmount},
       success: true,
     });
   } catch (error) {
