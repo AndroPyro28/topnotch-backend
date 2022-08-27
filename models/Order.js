@@ -159,9 +159,7 @@ class Order {
       GROUP BY order_details.id`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [this.#customer_id]);
-      // return orderProductParserList(result);
-      console.log(result)
-      return result
+       return orderProductParserList(result);
     } catch (error) {
       
     }
