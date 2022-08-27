@@ -160,6 +160,7 @@ class Order {
 
       const [result, _] = await poolConnection.execute(selectQuery, [this.#customer_id]);
       // return orderProductParserList(result);
+      console.log(result)
       return result
     } catch (error) {
       
