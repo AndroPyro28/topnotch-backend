@@ -326,6 +326,7 @@ module.exports.dashboardData = async (req, res) => {
       const orderModel = new Order({});
 
       const data = await orderModel.getAllOrders();
+      console.log(data);
       const dataObj = {
       }
 
