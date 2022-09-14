@@ -327,9 +327,7 @@ module.exports.dashboardData = async (req, res) => {
 
       const data = await orderModel.getAllOrders();
       const dataObj = {
-        7: "hello"
       }
-      console.log(dataObj);
       const dataMap = new Map();
 
       data.forEach(sale => {
@@ -339,19 +337,19 @@ module.exports.dashboardData = async (req, res) => {
 
         const currentMonth = date.getMonth();
 
-        let salesOfTheMonth = dataMap.get(currentMonth);
+        let salesOfTheMonth = dataObj[currentMonth];
 
         if(!salesOfTheMonth) {
           salesOfTheMonth = 0;
         }
         salesOfTheMonth += Number(totalAmount);
-        dataMap.set(currentMonth, salesOfTheMonth);
+        dataObj[currentMonth] = salesOfTheMonth;
       })
-      console.log(dataMap);
-      // return res.status(200).json({
-      //   success: true,
-      //   data: new JSONObject(dataMap) 
-      // });
+
+      return res.status(200).json({
+        success: true,
+        data: dataObj
+      });
 
     } catch (error) {
       console.error(error.message)
