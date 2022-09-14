@@ -325,7 +325,11 @@ module.exports.dashboardData = async (req, res) => {
     try {
       const orderModel = new Order({});
       const data = await orderModel.getAllOrders();
-      console.log(data);
+      const dataDashboard = data.map(sale => {
+        const date = new Date(sale.order_date);
+        console.log('date in db', sale.order_date)
+        console.log('month', date.getMonth())
+      })
     } catch (error) {
       console.error(error.message)
     }
