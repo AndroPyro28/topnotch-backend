@@ -328,7 +328,6 @@ module.exports.dashboardData = async (req, res) => {
       const data = await orderModel.getAllOrders();
       const dataObj = {
       }
-      const dataMap = new Map();
 
       data.forEach(sale => {
         const date = new Date(sale.order_date);
