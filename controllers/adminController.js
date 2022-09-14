@@ -344,11 +344,11 @@ module.exports.dashboardData = async (req, res) => {
         salesOfTheMonth += Number(totalAmount);
         dataMap.set(currentMonth, salesOfTheMonth);
       })
-
-      return res.status(200).json({
-        success: true,
-        data: new JSONObject(dataMap) 
-      });
+      console.log(dataMap);
+      // return res.status(200).json({
+      //   success: true,
+      //   data: new JSONObject(dataMap) 
+      // });
 
     } catch (error) {
       console.error(error.message)
