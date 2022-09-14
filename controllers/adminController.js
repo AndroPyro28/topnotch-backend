@@ -329,19 +329,20 @@ module.exports.dashboardData = async (req, res) => {
 
       const dataMap = new Map();
       console.log(data);
-      
+
       data.forEach(sale => {
         const date = new Date(sale.order_date);
 
-        const totalAmount = sale.total_amount;
+        const totalAmount = sale.total_amount + (sale.total_amount * 0.01);
 
         const currentMonth = date.getMonth();
 
         let salesOfTheMonth = dataMap.get(currentMonth);
+
         if(!salesOfTheMonth) {
           salesOfTheMonth = 0;
         }
-        console.log(`${salesOfTheMonth} of ${currentMonth}`)
+
         salesOfTheMonth += Number(totalAmount);
         dataMap.set(currentMonth, salesOfTheMonth);
       })
