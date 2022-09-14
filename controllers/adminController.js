@@ -342,12 +342,15 @@ module.exports.dashboardData = async (req, res) => {
         if(!salesOfTheMonth) {
           salesOfTheMonth = 0;
         }
-
         salesOfTheMonth += Number(totalAmount);
         dataMap.set(currentMonth, salesOfTheMonth);
       })
 
-      console.log(dataMap);
+      return res.status(200).json({
+        success: true,
+        data: dataMap
+      });
+
     } catch (error) {
       console.error(error.message)
     }
