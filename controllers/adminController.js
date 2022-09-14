@@ -324,12 +324,26 @@ module.exports.appointmentCompleted = async (req, res) => {
 module.exports.dashboardData = async (req, res) => {
     try {
       const orderModel = new Order({});
+
       const data = await orderModel.getAllOrders();
-      const dataDashboard = data.map(sale => {
+
+      const dataMap = new Map();
+      
+      data.forEach(sale => {
         const date = new Date(sale.order_date);
-        console.log('date in db', sale.order_date)
-        console.log('month', date.getMonth())
+
+        const totalAmount = sale.total_amount;
+
+        const currentMonth = date.getMonth();
+
+        let salesOfTheMonth = dataMap.get(currentMonth);
+
+        salesOfTheMonth += totalAmount;
+
+        dataMap.set(currentMonth, salesOfTheMonth);
       })
+
+      console.log(dataMap);
     } catch (error) {
       console.error(error.message)
     }
