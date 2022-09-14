@@ -347,7 +347,7 @@ module.exports.dashboardData = async (req, res) => {
 
       return res.status(200).json({
         success: true,
-        data: new JsonObject(dataMap) 
+        data: new JSONObject(dataMap) 
       });
 
     } catch (error) {
