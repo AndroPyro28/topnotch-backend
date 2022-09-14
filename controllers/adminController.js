@@ -338,7 +338,7 @@ module.exports.dashboardData = async (req, res) => {
 
         let salesOfTheMonth = dataMap.get(currentMonth);
 
-        salesOfTheMonth += totalAmount;
+        salesOfTheMonth += Number(totalAmount);
 
         dataMap.set(currentMonth, salesOfTheMonth);
       })
