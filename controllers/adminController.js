@@ -326,7 +326,10 @@ module.exports.dashboardData = async (req, res) => {
       const orderModel = new Order({});
 
       const data = await orderModel.getAllOrders();
-
+      const dataObj = {
+        7: "hello"
+      }
+      console.log(dataObj);
       const dataMap = new Map();
 
       data.forEach(sale => {
