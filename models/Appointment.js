@@ -142,7 +142,6 @@ class Appointment {
       WHERE appointments.id = ?`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [id]);
-      console.log(result);
       // result[0].customer = DataJsonParser(result[0].customer);
       // result[0].appointment = DataJsonParser(result[0].appointment);
       return result[0];
