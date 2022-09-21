@@ -169,7 +169,6 @@ class Order {
     try {
       const selectQuery = `
       SELECT * FROM order_details;
-      
       `;
 
       const [result, _] = await poolConnection.execute(selectQuery);

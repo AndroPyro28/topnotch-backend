@@ -358,7 +358,8 @@ module.exports.dashboardData = async (req, res) => {
         data: {
           monthlySales: dataObj,
           overAllSales,
-          totalSalesToday
+          totalSalesToday,
+          totalNumberOfAllTransactions: data.length
         }
       });
 
