@@ -165,7 +165,7 @@ class Order {
     }
   };
 
-  getAllOrders = async () => {
+  dashboardData = async () => {
     try {
       const selectQuery = `SELECT * FROM order_details WHERE order_status = ?;`;
 
