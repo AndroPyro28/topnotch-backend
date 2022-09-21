@@ -331,6 +331,7 @@ module.exports.dashboardData = async (req, res) => {
       let totalSalesToday = 0;
       const dateToday = getDateToday()
 
+      console.log(data);
       data.forEach(sale => {
         const date = new Date(sale.order_date);
         
