@@ -368,3 +368,7 @@ module.exports.dashboardData = async (req, res) => {
       console.error(error.message)
     }
 }
+
+module.exports.markComplete = async (req, res) => {
+  console.log(req.params)
+}
