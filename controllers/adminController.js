@@ -357,7 +357,6 @@ module.exports.dashboardData = async (req, res) => {
         success: true,
         data: {
           monthlySales: dataObj,
-          totalSales,
           overAllSales,
           totalSalesToday
         }
