@@ -215,6 +215,7 @@ class Product {
 
       const [result, _] = await poolConnection.query(updateQuery, [productIds]);
       console.log(updateQuery);
+      console.log(result)
     } catch (error) {
       console.error(error.message);
     }
