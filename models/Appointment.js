@@ -220,7 +220,7 @@ class Appointment {
     try {
       const updateQuery = `UPDATE appointments SET status = ? WHERE id = ?`
 
-      const [result, _] = await poolConnection(updateQuery, ['completed', id]);
+      const [result, _] = await poolConnection.execute(updateQuery, ['completed', id]);
 
       return result;
       
