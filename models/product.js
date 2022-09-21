@@ -209,6 +209,7 @@ class Product {
         }
 
         updateQuery += `
+        END)
         WHERE id IN (?)`
 
       const productIds = checkoutProducts.map((product) => product.product_id);
