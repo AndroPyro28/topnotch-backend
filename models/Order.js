@@ -76,8 +76,8 @@ class Order {
        GROUP_CONCAT(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name),'*DIVIDER*') as products
 
        FROM order_details od
-       INNER JOIN product_details pd
-       INNER JOIN products p
+       LEFT JOIN product_details pd
+       LEFT JOIN products p
        ON od.id = pd.order_id AND p.id = pd.product_id
        INNER JOIN customer c
        ON c.id = od.customer_id

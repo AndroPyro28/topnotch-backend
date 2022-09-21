@@ -353,7 +353,6 @@ module.exports.dashboardData = async (req, res) => {
         overAllSales += totalAmount;
         dataObj[currentMonth] = salesOfTheMonth;
       })
-
       return res.status(200).json({
         success: true,
         data: {
