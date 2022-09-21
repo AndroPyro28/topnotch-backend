@@ -214,6 +214,7 @@ class Product {
       const productIds = checkoutProducts.map((product) => product.product_id);
 
       const [result, _] = await poolConnection.query(updateQuery, [productIds]);
+      console.log(updateQuery);
     } catch (error) {
       console.error(error.message);
     }
