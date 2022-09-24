@@ -446,7 +446,7 @@ module.exports.getOrderByReference = async (req, res) => {
 module.exports.getAllAppointmentActivities = async (req, res) => {
   try {
     const appointmentModel = new Appointment({});
-    const appointmentResultQuery = appointmentModel.getAllAppointmentByUserId(req.currentUser.id);
+    const appointmentResultQuery = await appointmentModel.getAllAppointmentByUserId(req.currentUser.id);
 
     return res.status(200).json({
       data: appointmentResultQuery,
@@ -461,7 +461,7 @@ module.exports.getAllAppointmentActivities = async (req, res) => {
 module.exports.getAllOrderActivities = async (req, res) => {
   try {
     const orderModel = new Order({});
-    const OrderResultQuery = orderModel.getAllOrderByUserId(req.currentUser.id);
+    const OrderResultQuery = await orderModel.getAllOrderByUserId(req.currentUser.id);
 
     return res.status(200).json({
       data: OrderResultQuery,
