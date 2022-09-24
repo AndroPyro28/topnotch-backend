@@ -228,6 +228,16 @@ class Appointment {
       console.error(error.message)
     }
   }
+
+  getAllAppointmentByUserId = async (id) => {
+    try {
+      const selectQuery = `SELECT * FROM appointments WHERE user_id = ?;`;
+      const [result, _ ] = await poolConnection.execute(selectQuery, [id]);
+      return result;
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 }
 
 module.exports = Appointment;
