@@ -231,7 +231,7 @@ class Appointment {
 
   getAllAppointmentByUserId = async (id) => {
     try {
-      const selectQuery = `SELECT * FROM appointments WHERE customer_id = ? AND status = ? OR status = ?;`;
+      const selectQuery = `SELECT * FROM appointments WHERE customer_id = ? AND status = ? OR status = ? ORDER BY date_n_time DESC;`;
       const [result, _ ] = await poolConnection.execute(selectQuery, [id, 'onGoing', 'completed']);
       return result;
     } catch (error) {
