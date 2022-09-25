@@ -155,7 +155,6 @@ class Order {
           ? "AND delivery_status = 0 OR delivery_status = 1 OR delivery_status = 2"
           : `AND delivery_status = ${status}`
       }
-      
       GROUP BY order_details.id`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [this.#customer_id]);
