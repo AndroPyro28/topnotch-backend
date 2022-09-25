@@ -152,7 +152,7 @@ class Order {
       ON order_details.id = pd.order_id AND p.id = pd.product_id
       WHERE order_details.customer_id = ? ${
         status === "pending"
-          ? "AND delivery_status = 0 OR delivery_status = 1"
+          ? "AND delivery_status = 0 OR delivery_status = 1 OR delivery_status = 2"
           : `AND delivery_status = ${status}`
       }
       
