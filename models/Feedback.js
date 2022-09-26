@@ -13,7 +13,16 @@ class Feedback {
 
   getAllFeedback = async () => {
     try {
-      const selectQuery = `SELECT * FROM feedback`;
+      const selectQuery = `SELECT 
+      f.ratings,
+      f.comments,
+      f.id,
+      c.profile_image_url
+      FROM feedback f
+      INNER JOIN customer c
+      ON c.id = f.customer_id
+      ORDER BY ratings DESC
+      `;
       const [result, _] = await poolConnection.execute(selectQuery);
 
       return result;
