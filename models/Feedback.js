@@ -21,7 +21,7 @@ class Feedback {
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
-      ORDER BY ratings DESC
+      ORDER BY f.ratings DESC
       `;
       const [result, _] = await poolConnection.execute(selectQuery);
 
