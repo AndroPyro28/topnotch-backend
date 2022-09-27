@@ -138,7 +138,7 @@ class Product {
         this.#productDescription,
         this.#petType,
         this.#productStocks,
-        1,
+        this.#productAgeGap,
         this.#productCategory,
         this.#productImgUrl,
         this.#productImgId,

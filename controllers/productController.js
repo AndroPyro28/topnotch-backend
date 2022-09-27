@@ -120,7 +120,7 @@ module.exports.updateItem = async (req, res) => {
       productPrice: product_price,
       productCategory: category_id,
       productDescription: product_description,
-      productAgeGap: product_age_limit,
+      productAgeGap: 1, // comback to this later
       productImg: product_image_url,
       productImgId: product_image_id,
       petType: pet_type,
