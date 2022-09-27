@@ -127,7 +127,7 @@ class Product {
     product_description = ?,
     pet_type = ?,
     product_stocks = ?,
-    product_age_limit = ?,
+    age_limit_id = ?,
     category_id = ?,
     product_image_url = ?,
     product_image_id = ?
