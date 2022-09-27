@@ -88,7 +88,7 @@ class Product {
         p.product_price,
         p.product_description,
         p.pet_type,
-        p.product_data_added,
+        p.product_date_added,
         p.product_stocks,
         p.product_image_url,
         p.product_image_id,
