@@ -9,7 +9,7 @@ class Category {
 
   getAllCategory = async () => {
     try {
-      const selectQuery = `SELECT category FROM category c`;
+      const selectQuery = `SELECT * FROM product_category`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
       return result;
@@ -20,7 +20,7 @@ class Category {
 
   addCategory = async () => {
     try {
-      const insertQuery = `INSERT INTO category (category) VALUES (?);`
+      const insertQuery = `INSERT INTO product_category (category) VALUES (?);`
       const [result, _ ] = poolConnection.execute(insertQuery, [this.#category]);
       return result;
     } catch (error) {
