@@ -31,6 +31,7 @@ class ProductAgeLimit {
   addProductAgeLimit = async () => {
     try {
       const queryResult = await this.getProductAgeLimitByAgeLimit();
+      console.log(queryResult);
       if(queryResult.length > 0) {
         throw new Error('product age limit is already exist');
       }
