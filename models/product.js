@@ -121,17 +121,18 @@ class Product {
 
   getCategoryByCategoryName = async () => {
     try {
+      console.log(this.#productCategory);
       const selectQuery = `SELECT id FROM product_category WHERE category = ?;`
       const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productCategory])
       return result;
     } catch (error) {
-      console.error(error.message)
+      console.error('here error', error.message)
     }
   }
 
   updateItem = async () => {
 
-    const result = await  this.getCategoryByCategoryName();
+    const result = await this.getCategoryByCategoryName();
     console.log(result);
     try {
       const updateQuery = `UPDATE products 
