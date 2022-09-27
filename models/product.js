@@ -99,7 +99,7 @@ class Product {
        FROM products p
        LEFT JOIN product_category pc
        ON p.category_id =
-       ORDER BY id DESC`;
+       ORDER BY p.id DESC`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
       return result;
