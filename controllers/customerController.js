@@ -129,6 +129,7 @@ module.exports.addItemsToCart = async (req, res) => {
     });
     console.log(req.body.values);
     const { action, result } = await productDetails.addItem();
+    console.log({action, result});
     return res.status(200).json({
       action,
       id: result.insertId,
