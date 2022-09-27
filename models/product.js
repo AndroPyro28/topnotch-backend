@@ -185,19 +185,35 @@ class Product {
     ageLimit = ""
   ) => {
     try {
-      const selectQuery = `SELECT * FROM products 
+      const selectQuery = `SELECT 
+        p.id,
+        p.product_name,
+        p.product_price,
+        p.product_description,
+        p.pet_type,
+        p.product_date_added,
+        p.product_stocks,
+        p.product_image_url,
+        p.product_image_id,
+        p.total_sales,
+        p.unit_sales,
+        pc.category,
+        pal.age_limit
+       FROM products p
+       LEFT JOIN product_category pc
+       ON p.category_id = ?
+       LEFT JOIN product_age_limit pal
+       ON p.age_limit_id = ?
       WHERE 
       product_name LIKE ? AND
       pet_type LIKE ? AND
-      age_limit_id LIKE ? AND
-      category_id LIKE ?
       ORDER BY id DESC`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [
-        `%${itemName}%`,
-        `%${petCategory}%`,
         `%${ageLimit}%`,
         `%${itemCategory}%`,
+        `%${itemName}%`,
+        `%${petCategory}%`,
       ]);
       return result;
     } catch (error) {
