@@ -147,7 +147,6 @@ module.exports.searchItems = async (req, res) => {
   console.log(req.body.values)
   try {
     const product = new Product({});
-    console.log('products search', petCategory, ageLimit, itemCategory, itemName)
     const products = await product.searchItems(
       itemName,
       petCategory,
