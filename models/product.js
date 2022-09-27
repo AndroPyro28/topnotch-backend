@@ -84,7 +84,24 @@ class Product {
   getAllItems = async () => {
     try {
       this.selectItemById();
-      const selectQuery = `SELECT * FROM products ORDER BY id DESC`;
+      const selectQuery = `SELECT 
+        p.id,
+        p.product_name,
+        p.product_price,
+        p.product_desciption,
+        p.pet_type,
+        p.product_data_added,
+        p.product_stocks,
+        p.product_image_url,
+        p.product_image_id,
+        p.total_sales,
+        p.unit_sales,
+        pc.category,
+        p.age_limit_id
+       FROM products p
+       LEFT JOIN product_category pc
+       ON p.category_id = pc.id
+       ORDER BY id DESC`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
       return result;
