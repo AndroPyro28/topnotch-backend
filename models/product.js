@@ -133,6 +133,7 @@ class Product {
   updateItem = async () => {
 
     const result = await this.getCategoryByCategoryName();
+    console.log(result)
     try {
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
