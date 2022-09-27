@@ -135,7 +135,7 @@ class Product {
     
     try {
       const queryResult = await this.getCategoryByCategoryName();
-    const {category_id} = queryResult[0]
+      const {id} = queryResult[0]
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
     product_price = ?, 
@@ -154,7 +154,7 @@ class Product {
         this.#petType,
         this.#productStocks,
         this.#productAgeGap,
-        category_id,
+        id,
         this.#productImgUrl,
         this.#productImgId,
         this.#id,
