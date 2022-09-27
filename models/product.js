@@ -98,7 +98,7 @@ class Product {
         p.age_limit_id
        FROM products p
        LEFT JOIN product_category pc
-       ON p.category_id =
+       ON p.category_id = pc.id
        ORDER BY p.id DESC`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
