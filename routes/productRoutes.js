@@ -17,6 +17,7 @@ router.get("/getAllCategory",verifyUser ,productController.getAllCategory);
 router.post('/searchItems/', verifyUser, productController.searchItems)
 
 router.post('/addProductAgeLimit', verifyUser, productController.addProductAgeLimit)
+router.get('/getAllProductAgeLimit', verifyUser, productController.getAllProductAgeLimit)
 
 
 module.exports = router;

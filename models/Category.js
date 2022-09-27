@@ -31,8 +31,8 @@ class Category {
   addCategory = async () => {
     try {
       const queryResult = await this.getCategoryByCategoryName();
-      const {category_id} = queryResult[0]
-      if(category_id) {
+      
+      if(queryResult) {
         throw new Error('category is alredy exist');
       }
       const insertQuery = `INSERT INTO product_category (category) VALUES (?);`
