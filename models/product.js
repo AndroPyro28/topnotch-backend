@@ -133,7 +133,7 @@ class Product {
   updateItem = async () => {
 
     const result = await this.getCategoryByCategoryName();
-    console.log(result)
+    const {category_id} = result[0]
     try {
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
@@ -153,7 +153,7 @@ class Product {
         this.#petType,
         this.#productStocks,
         this.#productAgeGap,
-        this.#productCategory,
+        this.#category_id,
         this.#productImgUrl,
         this.#productImgId,
         this.#id,
