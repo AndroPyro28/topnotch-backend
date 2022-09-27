@@ -29,10 +29,8 @@ module.exports.addItem = async (req, res) => {
 
     const product = new Product(newProduct);
     const result = await product.insertProduct();
-    delete newProduct.productAgeGap;
-    delete newProduct.productCategory;
-    newProduct.age_limit = age_limit;
-    newProduct.category = categoryname;
+    newProduct.productAgeGap = age_limit;
+    newProduct.productCategory = categoryname;
     if (result.insertId) {
       newProduct.id = result.insertId;
       console.log(newProduct);
