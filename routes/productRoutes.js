@@ -10,4 +10,11 @@ router.delete("/deleteProduct/:id",verifyUser ,productController.deleteProduct);
 router.post("/updateItem",verifyUser ,productController.updateItem);
 router.post('/searchItems/', verifyUser, productController.searchItems)
 
+router.post("/addCategory", verifyUser,productController.addCategory);
+router.get("/getAllCategory",verifyUser ,productController.getAllCategory);
+// router.delete("/deleteProduct/:id",verifyUser ,productController.deleteProduct);
+// router.post("/updateItem",verifyUser ,productController.updateItem);
+router.post('/searchItems/', verifyUser, productController.searchItems)
+
+
 module.exports = router;

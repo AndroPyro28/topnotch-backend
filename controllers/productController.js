@@ -1,5 +1,9 @@
 const Product = require("../models/product");
-const { uploadOneProduct, deleteOneProduct } = require("../helpers/CloudinaryProduct");
+const {
+  uploadOneProduct,
+  deleteOneProduct,
+} = require("../helpers/CloudinaryProduct");
+const Category = require("../models/Category");
 module.exports.addItem = async (req, res) => {
   try {
     if (
@@ -147,6 +151,48 @@ module.exports.searchItems = async (req, res) => {
     });
   } catch (error) {
     console.error(error.message);
+    return res.status(200).json({
+      msg: error.message,
+      success: false,
+    });
+  }
+};
+
+module.exports.getAllCategory = async (req, res) => {
+  try {
+    const categoryModel = new Category({});
+
+    const result = await categoryModel.getAllCategory();
+
+    return res.status(200).json({
+      data: result,
+      success: true
+    })
+
+  } catch (error) {
+    return res.status(200).json({
+      msg: error.message,
+      success: false,
+    });
+  }
+};
+
+module.exports.addCategory = async (req, res) => {
+  try {
+    const { category } = req.body.values;
+    const categoryModel = new Category({
+      category,
+    });
+
+    const result = await categoryModel.addCategory();
+
+    if(!result) throw new Error('something went wrong');
+    
+    return res.status(200).json({
+      msg: 'Category added!',
+      success: true
+    })
+  } catch (error) {
     return res.status(200).json({
       msg: error.message,
       success: false,
