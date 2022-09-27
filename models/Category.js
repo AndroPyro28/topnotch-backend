@@ -40,7 +40,6 @@ class Category {
         const [result, _ ] = poolConnection.execute(insertQuery, [this.#category]);
         return result;
       }
-      throw new Error('category is alredy exist');
     } catch (error) {
       console.error(error.message)
     }

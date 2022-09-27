@@ -41,9 +41,7 @@ class ProductAgeLimit {
         const insertQuery = `INSERT INTO product_age_limit (age_limit) VALUES (?);`
         const [result, _ ] = poolConnection.execute(insertQuery, [this.#age_limit]);
         return result;
-        
       }
-      throw new Error('product age limit is already exist');
     } catch (error) {
       console.error(error.message)
     }
