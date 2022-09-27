@@ -58,19 +58,18 @@ class Product {
     try {
       const insertQuery = `
                 INSERT INTO products 
-                (product_name, product_price, product_description, 	product_date_added, product_stocks, product_age_limit, product_category, product_image_url, product_image_id, pet_type)
+                (product_name, product_price, product_description, 	product_date_added, product_stocks, age_limit_id, product_category, product_image_url, product_image_id, pet_type)
                 VALUES
                 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             `;
-
-            console.log(this.#productCategory);
+      console.log(this.#productCategory);
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#productName,
         this.#productPrice,
         this.#productDescription,
         getDateToday(),
         this.#productStocks,
-        this.#productAgeGap,
+        1,
         this.#productCategory,
         this.#productImgUrl,
         this.#productImgId,
