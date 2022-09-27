@@ -63,6 +63,7 @@ class Product {
                 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             `;
 
+            console.log(this.#productCategory);
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#productName,
         this.#productPrice,

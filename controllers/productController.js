@@ -14,15 +14,23 @@ module.exports.addItem = async (req, res) => {
       req.body.values.productImg = cloudinary.url;
       req.body.values.productImgId = cloudinary.public_id;
     }
-    const product = new Product(req.body.values);
 
+    const newProduct = req.body.values
+    let category_id = newProduct.productDescription.split('-')[0];
+    let categoryname = newProduct.productDescription.split('-')[1];
+
+    newProduct.productCategory = category_id;
+
+    const product = new Product(newProduct);
     const result = await product.insertProduct();
+
+    newProduct.productCategory = categoryname;
 
     if (result.insertId) {
       req.body.values.id = result.insertId;
       return res.status(200).json({
         msg: "Product added",
-        newProduct: req.body.values,
+        newProduct,
         success: true,
       });
     }
