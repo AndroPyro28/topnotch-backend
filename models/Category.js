@@ -31,7 +31,8 @@ class Category {
   addCategory = async () => {
     try {
       const queryResult = await this.getCategoryByCategoryName();
-      console.log(queryResult);
+      console.log('category', queryResult);
+
       if(queryResult.length > 0) {
         throw new Error('category is alredy exist');
       }
