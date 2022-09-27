@@ -193,7 +193,7 @@ module.exports.addCategory = async (req, res) => {
     });
 
     const result = await categoryModel.addCategory();
-
+    console.log('result', result);
     if(!result) throw new Error('Category already exist');
     
     return res.status(200).json({
@@ -235,6 +235,8 @@ module.exports.addProductAgeLimit = async (req, res) => {
     });
 
     const result = await productAgeLimitModel.addProductAgeLimit();
+    console.log('result', result);
+
     if(!result) throw new Error('Product Age Limit already exist');
 
     return res.status(200).json({

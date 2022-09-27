@@ -35,14 +35,12 @@ class Category {
   addCategory = async () => {
     try {
       const queryResult = await this.getCategoryByCategoryName();
-      console.log('category', queryResult);
       if(!queryResult) {
         const insertQuery = `INSERT INTO product_category (category) VALUES (?);`
         const [result, _ ] = poolConnection.execute(insertQuery, [this.#category]);
         return result;
       }
       throw new Error('category is alredy exist');
-      
     } catch (error) {
       console.error(error.message)
     }
