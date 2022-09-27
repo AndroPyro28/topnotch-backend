@@ -90,7 +90,7 @@ class ProductDetails {
         INNER JOIN products p
         ON p.id = pd.product_id
         INNER JOIN product_age_limit pal
-        ON p.age_limit = pal.id
+        ON p.age_limit_id = pal.id
         INNER JOIN product_category pc
         ON p.category_id = pc.id
         WHERE order_id IS NULL AND
