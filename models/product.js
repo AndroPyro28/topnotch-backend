@@ -121,7 +121,7 @@ class Product {
 
   getCategoryByCategoryName = async () => {
     try {
-      const selectQuery = `SELECT id FROM product_category c WHERE category = ?;`
+      const selectQuery = `SELECT id FROM product_category WHERE category = ?;`
       const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productCategory])
       return result;
     } catch (error) {
