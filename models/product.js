@@ -128,7 +128,7 @@ class Product {
     pet_type = ?,
     product_stocks = ?,
     product_age_limit = ?,
-    product_category = ?,
+    category_id = ?,
     product_image_url = ?,
     product_image_id = ?
     WHERE id = ?`;
@@ -138,7 +138,7 @@ class Product {
         this.#productDescription,
         this.#petType,
         this.#productStocks,
-        this.#productAgeGap,
+        1,
         this.#productCategory,
         this.#productImgUrl,
         this.#productImgId,
