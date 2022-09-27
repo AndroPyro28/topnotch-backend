@@ -9,7 +9,7 @@ class Category {
 
   getAllCategory = async () => {
     try {
-      const selectQuery = `SELECT category FROM category`;
+      const selectQuery = `SELECT category FROM category c`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
       return result;
