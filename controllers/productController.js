@@ -32,7 +32,8 @@ module.exports.addItem = async (req, res) => {
     newProduct.productAgeGap = age_limit;
     newProduct.productCategory = categoryname;
     if (result.insertId) {
-      req.body.values.id = result.insertId;
+      newProduct.id = result.insertId;
+      console.log(newProduct);
       return res.status(200).json({
         msg: "Product added",
         newProduct,
