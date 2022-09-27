@@ -206,9 +206,9 @@ class Product {
         ON p.age_limit_id = pal.id
         WHERE 
         product_name LIKE ? AND
-        pet_type LIKE ? AND
-        age_limit_id LIKE ? AND
-        category_id LIKE ?
+        p.pet_type LIKE ? AND
+        p.age_limit_id LIKE ? AND
+        p.category_id LIKE ?
         ORDER BY id DESC`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [
