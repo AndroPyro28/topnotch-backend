@@ -32,7 +32,7 @@ class ProductAgeLimit {
     try {
       const queryResult = await this.getProductAgeLimitByAgeLimit();
       console.log('age limit', queryResult);
-      if(queryResult.length > 0) {
+      if(queryResult?.length > 0) {
         throw new Error('product age limit is already exist');
       }
       const insertQuery = `INSERT INTO product_age_limit (age_limit) VALUES (?);`
