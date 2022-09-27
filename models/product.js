@@ -123,31 +123,34 @@ class Product {
 
   getCategoryIdByCategoryName = async () => {
     try {
-      const selectQuery = `SELECT id as category_id FROM product_category WHERE category = ?;`
-      const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productCategory])
+      const selectQuery = `SELECT id as category_id FROM product_category WHERE category = ?;`;
+      const [result, _] = await poolConnection.execute(selectQuery, [
+        this.#productCategory,
+      ]);
       return result;
     } catch (error) {
-      console.error('here error', error.message)
+      console.error("here error", error.message);
     }
-  }
+  };
 
   getProductAgeLimitIdByAgeLimit = async () => {
     try {
-      const selectQuery = `SELECT id as age_limit_id FROM product_age_limit WHERE age_limit = ?;`
-      const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productAgeGap])
+      const selectQuery = `SELECT id as age_limit_id FROM product_age_limit WHERE age_limit = ?;`;
+      const [result, _] = await poolConnection.execute(selectQuery, [
+        this.#productAgeGap,
+      ]);
       return result;
     } catch (error) {
-      console.error('here error', error.message)
+      console.error("here error", error.message);
     }
-  }
+  };
 
   updateItem = async () => {
-
     try {
       const queryResult1 = await this.getCategoryIdByCategoryName();
-      const {category_id} = queryResult1[0]
+      const { category_id } = queryResult1[0];
       const queryResult2 = await this.getProductAgeLimitIdByAgeLimit();
-      const {age_limit_id} = queryResult2[0]
+      const { age_limit_id } = queryResult2[0];
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
     product_price = ?, 
@@ -210,8 +213,8 @@ class Product {
       ORDER BY id DESC`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [
-        `%${ageLimit}%`,
-        `%${itemCategory}%`,
+        ageLimit,
+        itemCategory,
         `%${itemName}%`,
         `%${petCategory}%`,
       ]);
@@ -252,29 +255,29 @@ class Product {
 
       for (let i = 0; i < checkoutProducts.length; i++) {
         updateQuery += `
-            WHEN id = ${checkoutProducts[i].product_id} THEN total_sales + ${checkoutProducts[i].quantity * checkoutProducts[i].product_price}`;
+            WHEN id = ${checkoutProducts[i].product_id} THEN total_sales + ${
+          checkoutProducts[i].quantity * checkoutProducts[i].product_price
+        }`;
       }
 
       updateQuery += `
         END),
         unit_sales = (
           case
-        `
-        
-        for (let i = 0; i < checkoutProducts.length; i++) {
-          updateQuery += `
-              WHEN id = ${checkoutProducts[i].product_id} THEN unit_sales + ${checkoutProducts[i].quantity}`;
-        }
+        `;
 
+      for (let i = 0; i < checkoutProducts.length; i++) {
         updateQuery += `
+              WHEN id = ${checkoutProducts[i].product_id} THEN unit_sales + ${checkoutProducts[i].quantity}`;
+      }
+
+      updateQuery += `
         END)
-        WHERE id IN (?)`
+        WHERE id IN (?)`;
 
       const productIds = checkoutProducts.map((product) => product.product_id);
 
       const [result, _] = await poolConnection.query(updateQuery, [productIds]);
-      console.log(updateQuery);
-      console.log(result)
     } catch (error) {
       console.error(error.message);
     }
