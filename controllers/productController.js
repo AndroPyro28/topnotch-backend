@@ -144,6 +144,7 @@ module.exports.updateItem = async (req, res) => {
 
 module.exports.searchItems = async (req, res) => {
   const { petCategory, ageLimit, itemCategory, itemName } = req.body.values;
+  console.log(req.body.values)
   try {
     const product = new Product({});
     console.log('products search', petCategory, ageLimit, itemCategory, itemName)
