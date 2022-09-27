@@ -18,16 +18,19 @@ module.exports.addItem = async (req, res) => {
 
     const newProduct = req.body.values
     console.log(newProduct);
-    let category_id = newProduct.productCategory.split('-')[0];
-    let categoryname = newProduct.productCategory.split('-')[1];
+    let category_id = newProduct.productCategory.split('-|-')[0];
+    let categoryname = newProduct.productCategory.split('-|-')[1];
+
+    let age_limit_id = newProduct.productAgeGap.split('-|-')[0];
+    let age_limit = newProduct.productAgeGap.split('-|-')[1];
 
     newProduct.productCategory = category_id;
+    newProduct.productAgeGap = age_limit_id;
 
     const product = new Product(newProduct);
     const result = await product.insertProduct();
-
+    newProduct.productAgeGap = age_limit;
     newProduct.productCategory = categoryname;
-
     if (result.insertId) {
       req.body.values.id = result.insertId;
       return res.status(200).json({
