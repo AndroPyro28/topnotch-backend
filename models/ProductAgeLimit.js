@@ -31,8 +31,7 @@ class ProductAgeLimit {
   addProductAgeLimit = async () => {
     try {
       const queryResult = await this.getProductAgeLimitByAgeLimit();
-      const {age_limit_id} = queryResult[0];
-      if(age_limit_id) {
+      if(queryResult.length > 0) {
         throw new Error('product age limit is already exist');
       }
       const insertQuery = `INSERT INTO product_age_limit (age_limit) VALUES (?);`
