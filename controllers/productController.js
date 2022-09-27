@@ -17,8 +17,9 @@ module.exports.addItem = async (req, res) => {
     }
 
     const newProduct = req.body.values
-    let category_id = newProduct.productDescription.split('-')[0];
-    let categoryname = newProduct.productDescription.split('-')[1];
+    console.log(newProduct);
+    let category_id = newProduct.productCategory.split('-')[0];
+    let categoryname = newProduct.productCategory.split('-')[1];
 
     newProduct.productCategory = category_id;
 
