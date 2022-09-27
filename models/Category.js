@@ -32,7 +32,7 @@ class Category {
     try {
       const queryResult = await this.getCategoryByCategoryName();
       
-      if(queryResult) {
+      if(queryResult.length > 0) {
         throw new Error('category is alredy exist');
       }
       const insertQuery = `INSERT INTO product_category (category) VALUES (?);`
