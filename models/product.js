@@ -119,7 +119,20 @@ class Product {
     }
   };
 
+  getCategoryByCategoryName = async () => {
+    try {
+      const selectQuery = `SELECT id FROM product_category c WHERE category = ?;`
+      const [result, _ ] = poolConnection.execute(selectQuery, [this.#productCategory])
+      return result;
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
   updateItem = async () => {
+
+    const result = this.getCategoryByCategoryName();
+    console.log(result);
     try {
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
