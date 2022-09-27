@@ -205,7 +205,7 @@ class Product {
         LEFT JOIN product_age_limit pal
         ON p.age_limit_id = pal.id
         WHERE 
-        product_name LIKE ? AND
+        p.product_name LIKE ? AND
         p.pet_type LIKE ? AND
         p.age_limit_id LIKE ? AND
         p.category_id LIKE ?
