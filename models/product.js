@@ -121,9 +121,8 @@ class Product {
     }
   };
 
-  getCategoryByCategoryName = async () => {
+  getCategoryIdByCategoryName = async () => {
     try {
-      console.log(this.#productCategory);
       const selectQuery = `SELECT id as category_id FROM product_category WHERE category = ?;`
       const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productCategory])
       return result;
@@ -132,12 +131,23 @@ class Product {
     }
   }
 
+  getProductAgeLimitIdByAgeLimit = async () => {
+    try {
+      const selectQuery = `SELECT id as age_limit_id FROM product_age_limit WHERE age_limit = ?;`
+      const [result, _ ] = await  poolConnection.execute(selectQuery, [this.#productAgeGap])
+      return result;
+    } catch (error) {
+      console.error('here error', error.message)
+    }
+  }
+
   updateItem = async () => {
 
-    
     try {
-      const queryResult = await this.getCategoryByCategoryName();
-      const {category_id} = queryResult[0]
+      const queryResult1 = await this.getCategoryIdByCategoryName();
+      const {category_id} = queryResult1[0]
+      const queryResult2 = await this.getProductAgeLimitIdByAgeLimit();
+      const {age_limit_id} = queryResult2[0]
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
     product_price = ?, 
@@ -155,7 +165,7 @@ class Product {
         this.#productDescription,
         this.#petType,
         this.#productStocks,
-        this.#productAgeGap,
+        age_limit_id,
         category_id,
         this.#productImgUrl,
         this.#productImgId,
