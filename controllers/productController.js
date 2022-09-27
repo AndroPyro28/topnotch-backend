@@ -103,22 +103,20 @@ module.exports.updateItem = async (req, res) => {
       product_name,
       product_stocks,
       product_price,
-      category,
+      selectedCategory,
       product_description,
       product_age_limit,
       product_image_url,
       product_image_id,
       pet_type,
     } = req.body.values.item;
-    const category_id = category.split('-')[0]
-    const categoryname = category.split('-')[1]
-    req.body.values.item.category = categoryname;
+    console.log(selectedCategory)
     const product = new Product({
       id: id,
       productName: product_name,
       productStocks: product_stocks,
       productPrice: product_price,
-      productCategory: category_id,
+      productCategory: selectedCategory,
       productDescription: product_description,
       productAgeGap: 1, // comback to this later
       productImg: product_image_url,
