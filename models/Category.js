@@ -35,7 +35,7 @@ class Category {
   addCategory = async () => {
     try {
       const queryResult = await this.getCategoryByCategoryName();
-      if(!queryResult) {
+      if(queryResult == null || queryResult == undefined || queryResult?.length <= 0) {
         const insertQuery = `INSERT INTO product_category (category) VALUES (?);`
         const [result, _ ] = poolConnection.execute(insertQuery, [this.#category]);
         return result;
