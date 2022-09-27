@@ -132,9 +132,10 @@ class Product {
 
   updateItem = async () => {
 
-    const result = await this.getCategoryByCategoryName();
-    const {category_id} = result[0]
+    
     try {
+      const queryResult = await this.getCategoryByCategoryName();
+    const {category_id} = queryResult[0]
       const updateQuery = `UPDATE products 
     SET product_name = ?,  
     product_price = ?, 
