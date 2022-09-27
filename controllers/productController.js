@@ -4,6 +4,7 @@ const {
   deleteOneProduct,
 } = require("../helpers/CloudinaryProduct");
 const Category = require("../models/Category");
+const ProductAgeLimit = require("../models/ProductAgeLimit");
 module.exports.addItem = async (req, res) => {
   try {
     if (
@@ -193,7 +194,7 @@ module.exports.addCategory = async (req, res) => {
 
     const result = await categoryModel.addCategory();
 
-    if(!result) throw new Error('something went wrong');
+    if(!result) throw new Error('Category already exist');
     
     return res.status(200).json({
       msg: 'Category added!',
@@ -206,3 +207,44 @@ module.exports.addCategory = async (req, res) => {
     });
   }
 };
+
+module.exports.getAllProductAgeLimit = async (req, res) => {
+  try {
+    const productAgeLimitModel = new ProductAgeLimit({
+});
+    const result = await productAgeLimitModel.getAllProductAgeLimit();
+
+    return res.status(200).json({
+      data: result,
+      success: true
+    })
+
+  } catch (error) {
+    return res.status(200).json({
+      msg: error.message,
+      success: false,
+    });
+  }
+};
+
+module.exports.addProductAgeLimit = async (req, res) => {
+  try {
+    const { age_limit } = req.body.values;
+    const productAgeLimitModel = new ProductAgeLimit({
+      age_limit,
+    });
+
+    const result = await productAgeLimitModel.addProductAgeLimit();
+    if(!result) throw new Error('Product Age Limit already exist');
+
+    return res.status(200).json({
+      msg:'product age limit added!',
+      success: true
+    })
+  } catch (error) {
+    return res.status(200).json({
+      msg:error.message,
+      success: false
+    })
+  }
+}
