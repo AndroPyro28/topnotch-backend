@@ -95,10 +95,12 @@ class Product {
         p.total_sales,
         p.unit_sales,
         pc.category,
-        p.age_limit_id
+        pal.age_limit
        FROM products p
        LEFT JOIN product_category pc
        ON p.category_id = pc.id
+       LEFT JOIN product_age_limit pal
+       ON p.age_limit_id = pal.id
        ORDER BY p.id DESC`;
       const [result, _] = await poolConnection.execute(selectQuery);
 
