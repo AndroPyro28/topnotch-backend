@@ -39,7 +39,7 @@ class ProductAgeLimit {
       console.log('age limit', queryResult);
       if(queryResult == null || queryResult == undefined || queryResult?.length <= 0) {
         const insertQuery = `INSERT INTO product_age_limit (age_limit) VALUES (?);`
-        const [result, _ ] = poolConnection.execute(insertQuery, [this.#age_limit]);
+        const [result, _ ] = await poolConnection.execute(insertQuery, [this.#age_limit]);
         return result;
       }
     } catch (error) {
