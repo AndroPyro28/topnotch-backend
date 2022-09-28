@@ -30,8 +30,7 @@ class MultipleTable {
         }
     }
 
-    getSalesReport = async (from, to) => {
-        console.log(getDateToday())
+    getSalesReport = async (from=getDateToday(), to=getDateToday()) => {
         try {
             const selectQuery = `
                 SELECT 
@@ -45,7 +44,6 @@ class MultipleTable {
                 WHERE od.order_date between ? and ? and od.order_status = ?
                 ORDER BY od.order_date DESC
             `
-            
             const [result, _] = await poolConnection.execute(selectQuery, 
                 [from, to, 'completed']
             );
