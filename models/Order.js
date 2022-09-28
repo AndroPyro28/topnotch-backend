@@ -94,10 +94,10 @@ class Order {
         this.#order_status == 'all' ? [
         `%${'pending'}%`,
         `%${'onGoing'}%`,
-        `%${search}%`,
+        `%${search}`,
       ] : [
         `%${this.#order_status}%`,
-        `%${search}%`,
+        `%${search}`,
       ]
       )
       return orderProductParserList(result);
