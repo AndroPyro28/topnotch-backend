@@ -114,8 +114,9 @@ class Order {
 
      FROM order_details od
      INNER JOIN product_details pd
+     ON od.id = pd.order_id
      INNER JOIN products p
-     ON od.id = pd.order_id AND p.id = pd.product_id
+     ON  AND p.id = pd.product_id
      INNER JOIN customer c
      ON c.id = od.customer_id
      WHERE od.reference = ?
