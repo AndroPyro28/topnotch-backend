@@ -41,11 +41,11 @@ class MultipleTable {
             FROM order_details od
             INNER JOIN customer c  
             ON c.id = od.customer_id
-            WHERE od.order_date between ? and ?
+            WHERE od.order_date between ? and ? and od.order_status = ?
             ORDER BY od.order_date DESC
             `
             const [result, _] = await poolConnection.execute(selectQuery, [
-                from, to
+                from, to, 'completed'
             ]);
             return result;
         } catch (error) {
