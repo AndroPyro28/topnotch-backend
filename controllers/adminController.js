@@ -414,10 +414,14 @@ module.exports.saleReport = async (req, res) => {
   try {
     const multipleTable = new MultipleTable({});
     const queryResult = await multipleTable.getSalesReport();
-    res.status(200).json({
-
+    return res.status(200).json({
+      data: queryResult,
+      success: true
     })
   } catch (error) {
-    
+    return res.status(200).json({
+      msg: 'something went wrong',
+      success: false
+    })
   }
 }
