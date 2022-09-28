@@ -37,7 +37,6 @@ module.exports.orderProductParserOne = async (order) => {
             //     const productParsed = JSON.parse(product);
             //     // console.log(productParsed);
             //   }
-            console.log(product);
 
         })
         parsedJsonProducts.pop()
