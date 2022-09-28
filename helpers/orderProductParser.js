@@ -26,6 +26,8 @@ module.exports.orderProductParserOne = async (order) => {
         const productArr = order.products.split('*DIVIDER*');
         
         const parsedJsonProducts = productArr.map(product => {
+            console.log(product);
+
             if(product.startsWith(',') ) {
                 product = product.substring(1)
                 return JSON.parse(product);
@@ -33,6 +35,7 @@ module.exports.orderProductParserOne = async (order) => {
             if (product != "") {
                 return JSON.parse(product);
               }
+
         })
         parsedJsonProducts.pop()
         
