@@ -23,7 +23,7 @@ module.exports.orderProductParserList = async (orderJson) => {
 
 module.exports.orderProductParserOne = async (order) => {
 
-        const productArr = order.products.split('*DIVIDER*');
+        const productArr = order.products.split('X');
         console.log(productArr);
 
         const parsedJsonProducts = productArr.map(product => {
