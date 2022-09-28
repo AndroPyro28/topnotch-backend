@@ -83,16 +83,15 @@ class Order {
        ON c.id = od.customer_id
        WHERE ${
          this.#order_status == "all"
-           ? `od.order_status LIKE ? 
-           OR od.order_status LIKE ?`
-           : `od.order_status LIKE ?`
-       } AND
-       od.reference LIKE ?
+           ? `od.order_status LIKE ? AND od.reference LIKE ? OR od.order_status LIKE ? AND od.reference LIKE ?`
+           : `od.order_status LIKE ? AND od.reference LIKE ?`
+       } 
        GROUP BY od.id`;
       const [result, _] = await poolConnection.execute(selectQuery, 
         
         this.#order_status == 'all' ? [
         `%${'pending'}%`,
+        `%${search}`,
         `%${'onGoing'}%`,
         `%${search}`,
       ] : [
