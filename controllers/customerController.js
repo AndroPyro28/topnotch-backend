@@ -359,8 +359,8 @@ module.exports.payment = async (req, res) => {
       req.body.values;
     const productModel = new Product({});
     const { billingAddress, contactNo, zipCode, courierType } = billingInfo;
-
-    productModel.updatePaidItems(checkoutProducts);
+    console.log(req.body.values);
+    await productModel.updatePaidItems(checkoutProducts);
 
     const OrderModel = new Order({
       reference: orderId,
@@ -380,7 +380,7 @@ module.exports.payment = async (req, res) => {
       order_id: result.insertId,
     });
 
-    ProductDetailModel.insertOrderId(checkoutProducts);
+    await ProductDetailModel.insertOrderId(checkoutProducts);
 
     return res.status(201).json({
       msg: "Payment successful",
