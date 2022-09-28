@@ -110,7 +110,7 @@ class Order {
 
     JSON_OBJECT('userId', c.id, 'firstname', c.firstname, 'lastname', c.lastname, 'email', c.email, 'phone', c.phoneNo, 'address', c.address) as customer,
       
-     GROUP_CONCAT(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name, 'imageUrl', p.product_image_url, 'product_description', p.product_description, 'product_price', p.product_price, 'quantity', pd.quantity),'*DIVIDER*') as products
+     GROUP_CONCAT(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name, 'imageUrl', p.product_image_url, 'product_description', p.product_description, 'product_price', p.product_price, 'quantity', pd.quantity)'*DIVIDER*') as products
 
      FROM order_details od
      INNER JOIN product_details pd
