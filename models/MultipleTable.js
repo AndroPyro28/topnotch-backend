@@ -39,6 +39,7 @@ class MultipleTable {
             if(!to) {
                 to = '2022-07-25'
             }
+            console.log({from, to})
             const selectQuery = `
                 SELECT 
                 od.*,
