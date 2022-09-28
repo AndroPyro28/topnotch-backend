@@ -340,7 +340,11 @@ module.exports.dashboardData = async (req, res) => {
       const currentMonth = date.getMonth();
 
       let salesOfTheMonth = dataObj[currentMonth];
-      totalTransactionsPerMonth[currentMonth] += 1;
+      if (!totalTransactionsPerMonth[currentMonth]) {
+        totalTransactionsPerMonth[currentMonth] = 1;
+      } else {
+        totalTransactionsPerMonth[currentMonth] += 1;
+      }
       if (salesOfTheMonth == null || salesOfTheMonth == undefined) {
         salesOfTheMonth = 0;
       }
@@ -360,7 +364,7 @@ module.exports.dashboardData = async (req, res) => {
         overAllSales,
         totalSalesToday,
         totalNumberOfAllTransactions: data.length,
-        totalTransactionsPerMonth
+        totalTransactionsPerMonth,
       },
     });
   } catch (error) {
@@ -417,12 +421,12 @@ module.exports.saleReport = async (req, res) => {
     const queryResult = await multipleTable.getSalesReport();
     return res.status(200).json({
       data: queryResult,
-      success: true
-    })
+      success: true,
+    });
   } catch (error) {
     return res.status(200).json({
-      msg: 'something went wrong',
-      success: false
-    })
+      msg: "something went wrong",
+      success: false,
+    });
   }
-}
+};
