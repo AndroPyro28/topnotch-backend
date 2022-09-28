@@ -18,6 +18,6 @@ router.patch('/appointmentCompleted/:link', verifyUser, adminController.appointm
 router.patch('/markComplete/:id', verifyUser, adminController.markComplete)
 router.get('/dashboard', verifyUser, adminController.dashboardData)
 router.get('/getAllFeedback', verifyUser, adminController.getAllFeedback)
-router.get('/saleReport', verifyUser, adminController.saleReport)
+router.post('/saleReport', verifyUser, adminController.saleReport)
 
 module.exports = router;

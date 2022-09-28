@@ -39,9 +39,9 @@ class MultipleTable {
             c.lastname,
             c.profile_image_url
             FROM order_details od
-            INNER JOIN customer c
+            INNER JOIN customer c  
             ON c.id = od.customer_id
-            WHERE od.order_date between '2022-07-25 00:00:00.000000' and '2022-08-06 00:00:00.000000'
+            WHERE od.order_date between '2022-09-01 18:26' and '2022-09-28 17:25'
             ORDER BY od.order_date DESC
             `
             const [result, _] = await poolConnection.execute(selectQuery, []);
