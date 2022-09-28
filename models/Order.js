@@ -124,7 +124,7 @@ class Order {
       const [result, _] = await poolConnection.execute(selectQuery, [
         this.#reference,
       ]);
-
+      console.log('order details', result);
       if (result.length > 0) {
         // result[0].customer = DataJsonParser(result[0].customer);
         return orderProductParserOne(result[0]);
