@@ -17,7 +17,7 @@ module.exports.verifyUser = async (req, res, next) => {
             selectQuery,
             [decodedToken.id]
         );
-        console.log({result, req.headers});
+        console.log({result, headers: req.headers});
 
         if(result.length <= 0) {
             return res.status(200).json({
