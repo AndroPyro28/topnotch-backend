@@ -88,7 +88,7 @@ class Order {
        } AND
        od.reference LIKE ?
        GROUP BY od.id`;
-
+       console.log(selectQuery);
       const [result, _] = await poolConnection.execute(selectQuery, [
         `%${search}%`,
       ]);
