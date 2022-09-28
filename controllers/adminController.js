@@ -417,8 +417,8 @@ module.exports.getAllFeedback = async (req, res) => {
 module.exports.saleReport = async (req, res) => {
   try {
     const multipleTable = new MultipleTable({});
-    console.log(req.body.values);
-    const queryResult = await multipleTable.getSalesReport();
+    const {filterDateFrom, filterDateTo} = req.body.values
+    const queryResult = await multipleTable.getSalesReport(filterDateFrom, filterDateTo);
     return res.status(200).json({
       data: queryResult,
       success: true,
