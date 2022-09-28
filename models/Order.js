@@ -153,7 +153,7 @@ class Order {
   getOrderByStatus = async (status) => {
     try {
       const selectQuery = `SELECT order_details.*,
-      JSON_ARRAYAGG(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name, 'imageUrl', p.product_image_url, 'product_description', p.product_description, 'product_price', p.product_price, 'quantity', pd.quantity),'*DIVIDER*') as products
+      JSON_ARRAYAGG(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name, 'imageUrl', p.product_image_url, 'product_description', p.product_description, 'product_price', p.product_price, 'quantity', pd.quantity)) as products
       FROM order_details
       INNER JOIN product_details pd
       INNER JOIN products p
