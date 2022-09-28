@@ -22,7 +22,7 @@ module.exports.orderProductParserList = async (orderJson) => {
 
 
 module.exports.orderProductParserOne = async (order) => {
-    console.log(productArr);
+    console.log(order.products);
 
         const productArr = order.products.split('X');
 
