@@ -60,6 +60,8 @@ class Order {
         this.#zip_code,
         this.#courrier_type,
       ]);
+      console.log('add new order', result);
+
       return result;
     } catch (error) {
       console.error(error.message);
