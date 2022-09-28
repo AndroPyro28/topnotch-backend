@@ -30,10 +30,12 @@ module.exports.orderProductParserOne = async (order) => {
 
             if(product.startsWith(',') ) {
                 product = product.substring(1)
-                return JSON.parse(product);
+                const productParsed = JSON.parse(product);
+                console.log(productParsed);
             }
             if (product != "") {
-                return JSON.parse(product);
+                const productParsed = JSON.parse(product);
+                console.log(productParsed);
               }
 
         })
