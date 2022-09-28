@@ -28,15 +28,16 @@ module.exports.orderProductParserOne = async (order) => {
 
         const parsedJsonProducts = productArr.map(product => {
 
-            if(product.startsWith(',') ) {
-                product = product.substring(1)
-                const productParsed = JSON.parse(product);
-                // console.log(productParsed);
-            }
-            if (product != "") {
-                const productParsed = JSON.parse(product);
-                // console.log(productParsed);
-              }
+            // if(product.startsWith(',') ) {
+            //     product = product.substring(1)
+            //     const productParsed = JSON.parse(product);
+            //     // console.log(productParsed);
+            // }
+            // if (product != "") {
+            //     const productParsed = JSON.parse(product);
+            //     // console.log(productParsed);
+            //   }
+            console.log(product);
 
         })
         parsedJsonProducts.pop()
