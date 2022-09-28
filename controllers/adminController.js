@@ -79,7 +79,7 @@ module.exports.getSchedule = async (req, res) => {
   }
 };
 
-module.exports.getOrders = async (req, res) => {
+module.exports.getToShipOrders = async (req, res) => {
   const { status, textSearch } = req.body.values;
   try {
     const orderModel = new Order({

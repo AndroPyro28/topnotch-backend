@@ -86,7 +86,7 @@ class Order {
        GROUP BY od.id`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [
-        `%${this.#order_status == "all" ? "" : this.#order_status}%`,
+        `%${this.#order_status}%`,
         `%${search}%`,
       ]);
        return orderProductParserList(result);

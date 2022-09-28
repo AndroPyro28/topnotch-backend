@@ -6,7 +6,7 @@ const adminController = require('../controllers/adminController');
 
 router.post('/login', adminController.login)
 router.get('/appointments/:status', verifyUser, adminController.getSchedule)
-router.post('/getOrders/', verifyUser, adminController.getOrders)
+router.post('/getToShipOrders/', verifyUser, adminController.getToShipOrders)
 router.get('/getOrderDetails/:reference', verifyUser, adminController.getOrderDetails);
 router.patch('/orderNextStage/:reference',verifyUser, adminController.orderNextStage);
 router.get('/getAppointment/:id', verifyUser, adminController.getAppointment);
