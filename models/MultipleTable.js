@@ -33,20 +33,21 @@ class MultipleTable {
     getSalesReport = async (from, to) => {
         try {
             const selectQuery = `
-            SELECT 
-            od.*,
-            c.firstname,
-            c.lastname,
-            c.profile_image_url
-            FROM order_details od
-            INNER JOIN customer c  
-            ON c.id = od.customer_id
-            WHERE od.order_date between ? and ? and od.order_status = ?
-            ORDER BY od.order_date DESC
+                SELECT 
+                od.*,
+                c.firstname,
+                c.lastname,
+                c.profile_image_url
+                FROM order_details od
+                INNER JOIN customer c  
+                ON c.id = od.customer_id
+                WHERE ${!from && !to ? `od.order_status = ?` : `od.order_date between ? and ? and od.order_status = ?`}
+                ORDER BY od.order_date DESC
             `
-            const [result, _] = await poolConnection.execute(selectQuery, [
-                from, to, 'completed'
-            ]);
+            const [result, _] = await poolConnection.execute(selectQuery, 
+                !from && !to ? ['completed'] : [from, to, 'completed']
+            
+            );
             return result;
         } catch (error) {
             console.error(error.message)
