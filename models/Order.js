@@ -95,6 +95,8 @@ class Order {
           ? [`%${"pending"}%`, `%${search}%`, `%${"onGoing"}%`, `%${search}%`]
           : [`%${this.#order_status}%`, `%${search}%`]
       );
+
+      console.log(result)
       return result
     } catch (error) {
       console.error(error.message);
