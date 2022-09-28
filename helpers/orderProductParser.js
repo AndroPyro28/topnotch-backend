@@ -24,18 +24,18 @@ module.exports.orderProductParserList = async (orderJson) => {
 module.exports.orderProductParserOne = async (order) => {
 
         const productArr = order.products.split('*DIVIDER*');
-        
+        console.log(productArr);
+
         const parsedJsonProducts = productArr.map(product => {
-            console.log(product);
 
             if(product.startsWith(',') ) {
                 product = product.substring(1)
                 const productParsed = JSON.parse(product);
-                console.log(productParsed);
+                // console.log(productParsed);
             }
             if (product != "") {
                 const productParsed = JSON.parse(product);
-                console.log(productParsed);
+                // console.log(productParsed);
               }
 
         })
