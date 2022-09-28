@@ -13,11 +13,11 @@ module.exports.verifyUser = async (req, res, next) => {
         }
         
         const selectQuery = `SELECT * FROM ${userType} WHERE id = ?;`;
-
         const [result, _]=  await poolConnection.execute(
             selectQuery,
             [decodedToken.id]
         );
+        console.log({result, req.headers});
 
         if(result.length <= 0) {
             return res.status(200).json({
