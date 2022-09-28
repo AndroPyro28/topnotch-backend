@@ -34,13 +34,11 @@ class MultipleTable {
         try {
 
             if(!from) {
-                from = getDateToday();
+                from = '2022-07-25';
             }
             if(!to) {
-                to = getDateToday()
+                to = '2022-07-25'
             }
-
-            console.log({from, to})
             const selectQuery = `
                 SELECT 
                 od.*,
