@@ -113,10 +113,9 @@ class Order {
      GROUP_CONCAT(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name, 'imageUrl', p.product_image_url, 'product_description', p.product_description, 'product_price', p.product_price, 'quantity', pd.quantity)) as products
 
      FROM order_details od
-     INNER JOIN product_details pd
-     ON od.id = pd.order_id
-     INNER JOIN products p
-     ON  AND p.id = pd.product_id
+     LEFT JOIN product_details pd
+     LEFT JOIN products p
+     ON od.id = pd.order_id AND p.id = pd.product_id
      INNER JOIN customer c
      ON c.id = od.customer_id
      WHERE od.reference = ?
