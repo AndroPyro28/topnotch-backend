@@ -32,6 +32,8 @@ class MultipleTable {
 
     getSalesReport = async (from=getDateToday(), to=getDateToday()) => {
         try {
+
+            console.log({from, to})
             const selectQuery = `
                 SELECT 
                 od.*,
