@@ -29,6 +29,27 @@ class MultipleTable {
             console.log(error.message);
         }
     }
+
+    getSalesReport = async () => {
+        try {
+            const selectQuery = `
+            SELECT 
+            od.*,
+            c.firstname,
+            c.lastname,
+            c.profile_image_url
+            FROM order_details od
+            INNER JOIN customer c
+            ON c.id = od.customer_id
+            WHERE od.order_date between '2022-07-25 00:00:00.000000' and '2022-08-06 00:00:00.000000'
+            ORDER BY od.order_date DESC
+            `
+            const [result, _] = await poolConnection.execute(selectQuery, []);
+            return result;
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
 }
 
 module.exports = MultipleTable;
