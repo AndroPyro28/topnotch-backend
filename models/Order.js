@@ -81,15 +81,19 @@ class Order {
        ON od.id = pd.order_id AND p.id = pd.product_id
        INNER JOIN customer c
        ON c.id = od.customer_id
-       WHERE od.order_status LIKE ? AND
+       WHERE ${
+         this.#order_status == "all"
+           ? `od.order_status LIKE %pending% OR od.order_status LIKE %onGoing%`
+           : `od.order_status LIKE %${this.#order_status}%`
+       } AND
        od.reference LIKE ?
        GROUP BY od.id`;
 
       const [result, _] = await poolConnection.execute(selectQuery, [
-        `%${this.#order_status == "all" ? "pending OR od.order_status LIKE %onGoing%" : this.#order_status}%`,
+        `%${this.#order_status == "all" ? "" : this.#order_status}%`,
         `%${search}%`,
       ]);
-       return orderProductParserList(result);
+      return orderProductParserList(result);
     } catch (error) {
       console.error(error.message);
     }
@@ -119,7 +123,7 @@ class Order {
 
       if (result.length > 0) {
         // result[0].customer = DataJsonParser(result[0].customer);
-         return orderProductParserOne(result[0]);
+        return orderProductParserOne(result[0]);
       }
       return false;
     } catch (error) {
@@ -157,10 +161,12 @@ class Order {
       }
       GROUP BY order_details.id`;
 
-      const [result, _] = await poolConnection.execute(selectQuery, [this.#customer_id]);
-       return orderProductParserList(result);
+      const [result, _] = await poolConnection.execute(selectQuery, [
+        this.#customer_id,
+      ]);
+      return orderProductParserList(result);
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
   };
 
@@ -172,22 +178,21 @@ class Order {
 
       const [result, _] = await poolConnection.execute(selectQuery);
 
-      return result
+      return result;
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
 
   getAllOrderByUserId = async (id) => {
     try {
       const selectQuery = `SELECT * FROM order_details WHERE customer_id = ? ORDER BY order_date DESC;`;
-      const [result, _ ] = await poolConnection.execute(selectQuery, [id]);
+      const [result, _] = await poolConnection.execute(selectQuery, [id]);
       return result;
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
-  }
-
+  };
 }
 
 module.exports = Order;
