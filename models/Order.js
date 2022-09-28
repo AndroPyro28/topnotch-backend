@@ -74,7 +74,7 @@ class Order {
 
         JSON_OBJECT('userId', c.id, 'firstname', c.firstname, 'lastname', c.lastname) as customer,
         
-        JSON_ARRAYAGG(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name),'*DIVIDER*') as products
+        JSON_ARRAYAGG(JSON_OBJECT('product_id', p.id, 'product_name', p.product_name)) as products
 
        FROM order_details od
        INNER JOIN product_details pd
