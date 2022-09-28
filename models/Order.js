@@ -91,12 +91,12 @@ class Order {
         
         this.#order_status == 'all' ? [
         `%${'pending'}%`,
-        `%${search}`,
+        `%${search}%`,
         `%${'onGoing'}%`,
-        `%${search}`,
+        `%${search}%`,
       ] : [
         `%${this.#order_status}%`,
-        `%${search}`,
+        `%${search}%`,
       ]
       )
       console.log(selectQuery);
