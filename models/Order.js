@@ -100,6 +100,7 @@ class Order {
         `%${search}`,
       ]
       )
+      console.log(selectQuery);
       return orderProductParserList(result);
     } catch (error) {
       console.error(error.message);
