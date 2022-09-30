@@ -34,10 +34,10 @@ class MultipleTable {
         try {
 
             if(!from && to) {
-                from = getDateToday();
+                from = new Date()
             }
             if(!to && from) {
-                to = getDateToday()
+                to = new Date()
             }
             console.log({from, to});
             const selectQuery = `
