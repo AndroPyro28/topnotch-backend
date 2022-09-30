@@ -5,6 +5,7 @@ const {
 } = require("../helpers/CloudinaryProduct");
 const Category = require("../models/Category");
 const ProductAgeLimit = require("../models/ProductAgeLimit");
+const { default: ProductAgeLimitModal } = require("../../client/src/components/modals/admin_modals/add-ageLimit/ProductAgeLimitModal");
 module.exports.addItem = async (req, res) => {
   try {
     if (
@@ -272,13 +273,27 @@ module.exports.addProductAgeLimit = async (req, res) => {
   }
 }
 
-module.exports.updateAgeLimit = (req, res) => {
+module.exports.updateAgeLimit = async (req, res) => {
 
   try {
-    console.log('yes yes yes')
-    console.log(req.params, req.body);
+    const {id} = req.params;
+    const {age_limit} = req.body.values.ageLimitData;
+    console.log(req.params, req.body, id, age_limit);
+
+    const productAgeLimitModel = new ProductAgeLimit({
+      age_limit,
+    })
+
+    const result = await productAgeLimitModel.updateAgeLimit(id);
+
+    if(result.affectedRows > 0) {
+      return res.status(200).json({
+          result, 
+          success: true
+        })
+    }
   } catch (error) {
-    
+    console.error(error.message)
   }
 
 }
