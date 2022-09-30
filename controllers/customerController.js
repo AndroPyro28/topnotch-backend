@@ -11,6 +11,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Order = require("../models/Order");
 const { getDateToday } = require("../helpers/DateFormatter");
 const Feedback = require('../models/Feedback')
+const {v4: uudi} = require('uuid')
 module.exports.signup = async (req, res) => {
   try {
     const customer = new Customer(req.body.values);
@@ -296,6 +297,18 @@ module.exports.checkout = async (req, res) => {
         checkoutUrl: session.url,
         sessionId: session.id,
         orderId: session.payment_intent,
+        totalAmount,
+      });
+    }
+
+    if(checkoutType === "cod") {
+      return res.status(200).json({
+        proceedPayment: true,
+        method: checkoutType,
+        checkoutProducts,
+        checkoutUrl: `${process.env.CLIENT_URL_PROD}/customer/payment`,
+        sessionId:  uudi(),
+        orderId: uudi(),
         totalAmount,
       });
     }
