@@ -48,9 +48,12 @@ class ProductAgeLimit {
 
   updateAgeLimit = async (id) => {
     try {
+      const queryResult = await this.getProductAgeLimitByAgeLimit();
+      if(queryResult == null || queryResult == undefined || queryResult?.length <= 0) {
       const updateQuery = `UPDATE product_age_limit SET age_limit = ? WHERE id = ?`;
       const [result, _] = await poolConnection.execute(updateQuery, [this.#age_limit, id]);
       return result;
+    }
     } catch (error) {
       console.error(error);
     }
