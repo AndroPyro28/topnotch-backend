@@ -286,12 +286,10 @@ module.exports.updateAgeLimit = async (req, res) => {
 
     const result = await productAgeLimitModel.updateAgeLimit(id);
 
-    if(result.affectedRows > 0) {
       return res.status(200).json({
           result, 
           success: true
         })
-    }
   } catch (error) {
     console.error(error.message)
   }
