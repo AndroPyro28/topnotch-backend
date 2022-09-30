@@ -48,11 +48,11 @@ class MultipleTable {
                 FROM order_details od
                 INNER JOIN customer c  
                 ON c.id = od.customer_id
-                ${!to && !from ? `WHERE od.order_status = ?` : `WHERE od.order_date between ? and ? and od.order_status = ?`}
+                ${!to && !from ? `WHERE od.order_status = ? OR od.order_status = ?` : `WHERE od.order_date between ? and ? and od.order_status = ? OR `}
                 ORDER BY od.order_date DESC
             `
             const [result, _] = await poolConnection.execute(selectQuery, 
-               !to && !from ? ['completed'] : [from, to, 'completed']
+               !to && !from ? ['completed', 'cancelled'] : [from, to, 'completed']
             );
             return result;
         } catch (error) {
