@@ -39,6 +39,7 @@ class MultipleTable {
             if(!to && from) {
                 to = getDateToday()
             }
+            console.log({from, to});
             const selectQuery = `
                 SELECT 
                 od.*,
