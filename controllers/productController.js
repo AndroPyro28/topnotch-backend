@@ -357,7 +357,7 @@ module.exports.deleteAgeLimit = async (req, res) => {
       throw new Error('age limit did not delete, something went wrong');
     }
     return res.status(200).json({
-      result, 
+      result,
       success: true
     })
   } catch (error) {

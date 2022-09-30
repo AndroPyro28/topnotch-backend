@@ -59,7 +59,10 @@ class Category {
   }
   deleteCategory = async (id) => {
     try {
-      const deleteQuery = `DELETE FROM product_category WHERE id = ?`;
+      const deleteQuery = `
+      SET FOREIGN_KEY_CHECKS=0;
+      DELETE FROM product_category WHERE id = ?
+      SET FOREIGN_KEY_CHECKS=1;`;
         const [result, _ ] = await poolConnection.execute(deleteQuery, [id]);
         return result;
     } catch (error) {
