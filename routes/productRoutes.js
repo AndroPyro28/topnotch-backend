@@ -18,7 +18,7 @@ router.post('/searchItems/', verifyUser, productController.searchItems)
 
 router.post('/addProductAgeLimit', verifyUser, productController.addProductAgeLimit)
 router.get('/getAllProductAgeLimit', verifyUser, productController.getAllProductAgeLimit)
-router.put('/updateAgeLimit/:id', verifyUser, productController.updateAgeLimit)
+router.patch('/updateAgeLimit/:id', verifyUser, productController.updateAgeLimit)
 
 
 module.exports = router;
