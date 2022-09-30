@@ -253,7 +253,7 @@ module.exports.getScheduleToday = async (req, res) => {
 module.exports.startStreaming = async (req, res) => {
   try {
     const { linkId, scheduleInfo } = req.body.values;
-    const { customerId, appointmentId } = scheduleInfo;
+    const { customerId, appointmentId, timeStart } = scheduleInfo;
     const startTime = getTime();
     const streamDate = getDateToday();
     if (!linkId || !scheduleInfo) {
@@ -264,7 +264,7 @@ module.exports.startStreaming = async (req, res) => {
       customer_id: customerId,
       admin_id: req.currentUser.id,
       reference_id: linkId,
-      start_time: startTime,
+      start_time: timeStart,
       date: streamDate,
       appointment_id: appointmentId,
     });

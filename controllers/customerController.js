@@ -371,7 +371,7 @@ module.exports.payment = async (req, res) => {
     const productModel = new Product({});
     const { billingAddress, contactNo, zipCode, courierType } = billingInfo;
     await productModel.updatePaidItems(checkoutProducts);
-    console.log(timeCaptured);
+    console.log('time captured', timeCaptured);
     const OrderModel = new Order({
       reference: orderId,
       customer_id: req.currentUser.id,
