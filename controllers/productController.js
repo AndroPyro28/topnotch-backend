@@ -31,6 +31,7 @@ module.exports.addItem = async (req, res) => {
     const result = await product.insertProduct();
     newProduct.productAgeGap = age_limit;
     newProduct.productCategory = categoryname;
+
     if (result.insertId) {
       newProduct.id = result.insertId;
       console.log(newProduct);
@@ -215,6 +216,18 @@ module.exports.addCategory = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports.getAllProductAgeLimit = async (req, res) => {
   try {
     const productAgeLimitModel = new ProductAgeLimit({
@@ -257,4 +270,14 @@ module.exports.addProductAgeLimit = async (req, res) => {
       success: false
     })
   }
+}
+
+module.exports.updateAgeLimit = (req, res) => {
+
+  try {
+    console.log(req.params, req.body);
+  } catch (error) {
+    
+  }
+
 }
