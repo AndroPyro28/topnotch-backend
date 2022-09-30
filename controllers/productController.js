@@ -5,7 +5,6 @@ const {
 } = require("../helpers/CloudinaryProduct");
 const Category = require("../models/Category");
 const ProductAgeLimit = require("../models/ProductAgeLimit");
-const { default: ProductAgeLimitModal } = require("../../client/src/components/modals/admin_modals/add-ageLimit/ProductAgeLimitModal");
 module.exports.addItem = async (req, res) => {
   try {
     if (
