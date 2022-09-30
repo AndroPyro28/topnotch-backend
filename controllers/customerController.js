@@ -366,16 +366,16 @@ module.exports.addAppointment = async (req, res) => {
 
 module.exports.payment = async (req, res) => {
   try {
-    const { checkoutProducts, method, orderId, totalAmount, billingInfo, timeCaptured } =
+    const { checkoutProducts, method, orderId, totalAmount, billingInfo } =
       req.body.values;
     const productModel = new Product({});
     const { billingAddress, contactNo, zipCode, courierType } = billingInfo;
     await productModel.updatePaidItems(checkoutProducts);
-    console.log('time captured', timeCaptured);
+
     const OrderModel = new Order({
       reference: orderId,
       customer_id: req.currentUser.id,
-      order_date: timeCaptured,
+      order_date: getDateToday(),
       total_amount: totalAmount,
       payment_type: method,
       billing_address: billingAddress,
