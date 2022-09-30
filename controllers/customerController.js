@@ -343,7 +343,7 @@ module.exports.addAppointment = async (req, res) => {
     const { result, success } = await appointment.addAppointment();
 
     return res.status(201).json({
-      msg: success ? "Appointment added" : "something went wrong...",
+      msg: success ? "Your appointment have been submitted, please wait for text approvement schedule" : "something went wrong...",
       success,
     });
   } catch (error) {
