@@ -62,9 +62,9 @@ class ProductAgeLimit {
   deleteAgeLimit = async (id) => {
     try {
       const deleteQuery = `
-      SET FOREIGN_KEY_CHECKS=0
+     
       DELETE FROM product_age_limit WHERE id = ?
-      SET FOREIGN_KEY_CHECKS=1`;
+`;
         const [result, _ ] = await poolConnection.execute(deleteQuery, [id]);
         return result;
     } catch (error) {
