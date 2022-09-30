@@ -17,7 +17,6 @@ module.exports.addItem = async (req, res) => {
     }
 
     const newProduct = req.body.values
-    console.log(newProduct);
     let category_id = newProduct.productCategory.split('-|-')[0];
     let categoryname = newProduct.productCategory.split('-|-')[1];
 
@@ -34,7 +33,6 @@ module.exports.addItem = async (req, res) => {
 
     if (result.insertId) {
       newProduct.id = result.insertId;
-      console.log(newProduct);
       return res.status(200).json({
         msg: "Product added",
         newProduct,
@@ -199,7 +197,6 @@ module.exports.addCategory = async (req, res) => {
     });
 
     const result = await categoryModel.addCategory();
-    console.log('result', result);
     if(!result) throw new Error('Category already exist');
     
     return res.status(200).json({
@@ -254,7 +251,6 @@ module.exports.addProductAgeLimit = async (req, res) => {
     });
 
     const result = await productAgeLimitModel.addProductAgeLimit();
-    console.log('result', result);
 
     if(!result) throw new Error('Product Age Limit already exist');
 
