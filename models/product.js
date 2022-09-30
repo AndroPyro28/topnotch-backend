@@ -184,6 +184,13 @@ class Product {
     itemCategory = "",
     ageLimit = ""
   ) => {
+
+    console.log('search items data', {
+      itemName ,
+      petCategory ,
+      itemCategory ,
+      ageLimit,
+    })
     try {
       const selectQuery = `SELECT 
         p.id,
