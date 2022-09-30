@@ -52,7 +52,7 @@ class Order {
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#reference,
         this.#customer_id,
-        new Date(),
+        this.#order_date,
         this.#total_amount,
         this.#payment_type,
         this.#billing_address,
