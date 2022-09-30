@@ -276,7 +276,6 @@ module.exports.updateAgeLimit = async (req, res) => {
   try {
     const {id} = req.params;
     const {age_limit} = req.body.values.ageLimitData;
-    console.log(req.params, req.body, id, age_limit);
 
     const productAgeLimitModel = new ProductAgeLimit({
       age_limit,
@@ -284,12 +283,46 @@ module.exports.updateAgeLimit = async (req, res) => {
 
     const result = await productAgeLimitModel.updateAgeLimit(id);
 
+    if(!result) {
+      throw new Error('age limit did not update, age limit cannot be duplicated!')
+    }
       return res.status(200).json({
           result, 
           success: true
         })
+
   } catch (error) {
     console.error(error.message)
+    return res.status(400).json({
+      msg:error.message,
+      success: false
+    })
   }
 
+}
+
+module.exports.updateCategory = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const {category} = req.body.values.categoryData;
+
+    const productCategoryModel = new Category({
+      category
+    });
+
+    const result = await productCategoryModel.updateCategory(id)
+    if(!result) {
+      throw new Error('category did not update, age limit cannot be duplicated!');
+    }
+    return res.status(200).json({
+      result, 
+      success: true
+    })
+  } catch (error) {
+    console.error(error.message)
+    return res.status(400).json({
+      msg:error.message,
+      success: false
+    })
+  }
 }
