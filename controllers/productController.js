@@ -275,6 +275,7 @@ module.exports.addProductAgeLimit = async (req, res) => {
 module.exports.updateAgeLimit = (req, res) => {
 
   try {
+    console.log('yes yes yes')
     console.log(req.params, req.body);
   } catch (error) {
     
