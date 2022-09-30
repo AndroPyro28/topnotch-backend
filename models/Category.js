@@ -54,7 +54,16 @@ class Category {
         return result;
       }
     } catch (error) {
-      
+      console.error(error.message)
+    }
+  }
+  deleteCategory = async (id) => {
+    try {
+      const deleteQuery = `DELETE FROM product_category WHERE id = ?`;
+        const [result, _ ] = await poolConnection.execute(deleteQuery, [id]);
+        return result;
+    } catch (error) {
+      console.error(error.message)
     }
   }
 }

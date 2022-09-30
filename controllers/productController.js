@@ -312,7 +312,49 @@ module.exports.updateCategory = async (req, res) => {
 
     const result = await productCategoryModel.updateCategory(id)
     if(!result) {
-      throw new Error('category did not update, age limit cannot be duplicated!');
+      throw new Error('category did not update, category cannot be duplicated!');
+    }
+    return res.status(200).json({
+      result, 
+      success: true
+    })
+  } catch (error) {
+    console.error(error.message)
+    return res.status(400).json({
+      msg:error.message,
+      success: false
+    })
+  }
+}
+
+module.exports.deleteCategory = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const productCategoryModel = new Category({});
+    const result = await productCategoryModel.deleteCategory(id)
+    if(!result) {
+      throw new Error('category did not delete, something went wrong');
+    }
+    return res.status(200).json({
+      result, 
+      success: true
+    })
+  } catch (error) {
+    console.error(error.message)
+    return res.status(400).json({
+      msg:error.message,
+      success: false
+    })
+  }
+}
+
+module.exports.deleteAgeLimit = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const productAgeLimit = new ProductAgeLimit({});
+    const result = await productAgeLimit.deleteAgeLimit(id)
+    if(!result) {
+      throw new Error('age limit did not delete, something went wrong');
     }
     return res.status(200).json({
       result, 

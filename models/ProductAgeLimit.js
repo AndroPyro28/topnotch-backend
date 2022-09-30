@@ -58,6 +58,16 @@ class ProductAgeLimit {
       console.error(error);
     }
   }
+
+  deleteAgeLimit = async (id) => {
+    try {
+      const deleteQuery = `DELETE FROM product_age_limit WHERE id = ?`;
+        const [result, _ ] = await poolConnection.execute(deleteQuery, [id]);
+        return result;
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 }
 
 module.exports = ProductAgeLimit;
