@@ -1,4 +1,5 @@
 const Vonage = require("@vonage/server-sdk");
+const { dateTimeFormatByText } = require("./dateTimeFormatByText");
 
 module.exports.sendTextMessageByStatus = (status, data, reference) => {
   let textMsg = "";
@@ -73,7 +74,17 @@ Your order is completed, thank you for ordering our product enjoy!
 
 
 module.exports.sendTextMessageByAppointment = (appointment, customer) => {
-  let textMsg = "";
+  const {firstname, lastname} = customer;
+  const {date_n_time, appointment_type} = appointment;
+  const { date, time } = dateTimeFormatByText(date_n_time);
+  console.log({
+    date, time
+  });
+  let textMsg = `Good Day $${firstname}! 
+  This is a text confirmation that your appointment of ${appointment_type} you issued has been approved, 
+  please come to us with your pet at  
+   
+  `;
   // let { firstname, lastname, contact } = customer;
   // let {contact} = appointment;
   console.log({appointment, customer});
