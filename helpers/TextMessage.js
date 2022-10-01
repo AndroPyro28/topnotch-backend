@@ -74,43 +74,43 @@ Your order is completed, thank you for ordering our product enjoy!
 
 
 module.exports.sendTextMessageByAppointment = (appointment, customer) => {
-  // const {firstname, lastname} = customer;
+  let {firstname, lastname, contact} = customer;
   const {date_n_time, appointment_type} = appointment;
   const { date, time } = dateTimeFormatByText(date_n_time);
-  console.log({
-    date, time
-  });
-  let textMsg = `Good Day ! 
+ 
+  let textMsg = `Good Day ${firstname} ${lastname}! 
+
   This is a text confirmation that your appointment of ${appointment_type} you issued has been approved, 
-  please come to us with your pet at  
-   
+  please come to our store with your pet at ${date} ${time}.
+  
+  Thank you for your patience!
+
+  -TopNotchGrooming-Malolos
   `;
-  // let { firstname, lastname, contact } = customer;
-  // let {contact} = appointment;
-  console.log({appointment, customer});
-  // if (contact.startsWith("09")) {
-  //   contact = contact.replace("09", "639");
-  // }
-  // const vonage = new Vonage({
-  //   apiKey: process.env.VONAGE_API_KEY,
-  //   apiSecret: process.env.VONAGE_API_SECRET,
-  // });
+  
+  if (contact.startsWith("09")) {
+    contact = contact.replace("09", "639");
+  }
+  const vonage = new Vonage({
+    apiKey: process.env.VONAGE_API_KEY,
+    apiSecret: process.env.VONAGE_API_SECRET,
+  });
 
 
-  // const from = "Vonage APIs";
-  // const to = contact;
+  const from = "Vonage APIs";
+  const to = contact;
 
-  // return vonage.message.sendSms(from, to, textMsg, (err, responseData) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     if (responseData.messages[0]["status"] === "0") {
-  //       console.log(`Message sent to ${to} successfully.`);
-  //     } else {
-  //       console.log(
-  //         `Message failed with error: ${responseData.messages[0]["error-text"]}`
-  //       );
-  //     }
-  //   }
-  // });
+  return vonage.message.sendSms(from, to, textMsg, (err, responseData) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (responseData.messages[0]["status"] === "0") {
+        console.log(`Message sent to ${to} successfully.`);
+      } else {
+        console.log(
+          `Message failed with error: ${responseData.messages[0]["error-text"]}`
+        );
+      }
+    }
+  });
 };
