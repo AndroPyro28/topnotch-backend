@@ -368,7 +368,6 @@ module.exports.payment = async (req, res) => {
   try {
     const { checkoutProducts, method, orderId, totalAmount, billingInfo } =
       req.body.values;
-      console.log(req.body.values);
     const productModel = new Product({});
     const { billingAddress, contactNo, zipCode, courierType } = billingInfo;
     await productModel.updatePaidItems(checkoutProducts);
