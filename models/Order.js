@@ -48,7 +48,7 @@ class Order {
       const insertQuery = `INSERT INTO order_details 
       (reference, customer_id, order_date, total_amount, payment_type, billing_address, contact, zip_code, courrier_type)
       VALUES (?,?,?,?,?,?,?,?,?);`;
-      moment.tz.setDefault('Asia/Manila')
+      
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#reference,
         this.#customer_id,
