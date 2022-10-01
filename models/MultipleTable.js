@@ -1,7 +1,6 @@
 const poolConnection = require("../config/connectDB");
 const {getDateToday} = require('../helpers/DateFormatter')
 const getTime = require("../helpers/getTime");
-
 class MultipleTable {
 
     liveStreamCompleted = async ({video_url="", reference_id=""}) => {
