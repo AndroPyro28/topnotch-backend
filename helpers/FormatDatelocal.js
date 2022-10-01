@@ -5,4 +5,4 @@ function FormateDateLocal(date) {
     return newDate
 }
 
-export default FormateDateLocal
+module.exports = FormateDateLocal
