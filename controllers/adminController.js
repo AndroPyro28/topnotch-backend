@@ -191,6 +191,7 @@ module.exports.approveAppointment = async (req, res) => {
   try {
     const { id } = req.params;
     const { appointment, customer } = req.body.values;
+    console.log(customer);
     const appointmentModel = new Appointment(appointment);
     const result = await appointmentModel.approveAppointment(id);
     sendTextMessageByAppointment(appointment, customer)
