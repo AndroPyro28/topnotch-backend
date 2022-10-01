@@ -24,6 +24,7 @@ app.use('/api/products', require('./routes/productRoutes'));
 
 const server = require('http').createServer(app);
 
+
 // app.get('/', async (req, res) => {
 //     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 //     const paymentIntents = await stripe.paymentIntents.list({
