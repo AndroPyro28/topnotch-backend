@@ -46,6 +46,7 @@ class Order {
 
   addNewOrder = async () => {
     try {
+      
       const insertQuery = `INSERT INTO order_details 
       (reference, customer_id, order_date, total_amount, payment_type, billing_address, contact, zip_code, courrier_type)
       VALUES (?,?,?,?,?,?,?,?,?);`;
