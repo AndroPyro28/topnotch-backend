@@ -4,7 +4,7 @@ const {
   orderProductParserList,
   orderProductParserOne,
 } = require("../helpers/orderProductParser");
-
+const moment = require('moment');
 class Order {
   #reference;
   #customer_id;
@@ -52,7 +52,7 @@ class Order {
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#reference,
         this.#customer_id,
-        new Date(),
+        moment().format(),
         this.#total_amount,
         this.#payment_type,
         this.#billing_address,
