@@ -6,7 +6,7 @@ module.exports.sendTextMessageByStatus = (status, data, reference) => {
   let {contact} = data;
 
   if (contact.startsWith("09")) {
-    contact = contact.replace("09", "63");
+    contact = contact.replace("09", "639");
   }
   const vonage = new Vonage({
     apiKey: process.env.VONAGE_API_KEY,
@@ -69,4 +69,38 @@ Your order is completed, thank you for ordering our product enjoy!
       }
     }
   });
+};
+
+const Vonage = require("@vonage/server-sdk");
+
+module.exports.sendTextMessageByAppointment = (appointment, customer) => {
+  let textMsg = "";
+  // let { firstname, lastname, contact } = customer;
+  // let {contact} = appointment;
+  console.log({appointment, customer});
+  // if (contact.startsWith("09")) {
+  //   contact = contact.replace("09", "639");
+  // }
+  // const vonage = new Vonage({
+  //   apiKey: process.env.VONAGE_API_KEY,
+  //   apiSecret: process.env.VONAGE_API_SECRET,
+  // });
+
+
+  // const from = "Vonage APIs";
+  // const to = contact;
+
+  // return vonage.message.sendSms(from, to, textMsg, (err, responseData) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     if (responseData.messages[0]["status"] === "0") {
+  //       console.log(`Message sent to ${to} successfully.`);
+  //     } else {
+  //       console.log(
+  //         `Message failed with error: ${responseData.messages[0]["error-text"]}`
+  //       );
+  //     }
+  //   }
+  // });
 };
