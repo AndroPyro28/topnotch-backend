@@ -74,13 +74,13 @@ Your order is completed, thank you for ordering our product enjoy!
 
 
 module.exports.sendTextMessageByAppointment = (appointment, customer) => {
-  const {firstname, lastname} = customer;
+  // const {firstname, lastname} = customer;
   const {date_n_time, appointment_type} = appointment;
   const { date, time } = dateTimeFormatByText(date_n_time);
   console.log({
     date, time
   });
-  let textMsg = `Good Day $${firstname}! 
+  let textMsg = `Good Day ! 
   This is a text confirmation that your appointment of ${appointment_type} you issued has been approved, 
   please come to us with your pet at  
    
