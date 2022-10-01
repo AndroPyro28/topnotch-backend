@@ -71,7 +71,6 @@ Your order is completed, thank you for ordering our product enjoy!
   });
 };
 
-const Vonage = require("@vonage/server-sdk");
 
 module.exports.sendTextMessageByAppointment = (appointment, customer) => {
   let textMsg = "";
