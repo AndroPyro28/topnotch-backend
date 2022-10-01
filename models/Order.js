@@ -49,7 +49,7 @@ class Order {
       const insertQuery = `INSERT INTO order_details 
       (reference, customer_id, order_date, total_amount, payment_type, billing_address, contact, zip_code, courrier_type)
       VALUES (?,?,?,?,?,?,?,?,?);`;
-      const timeStamp = FormateDateLocal(`${moment().format()}`);
+      const timeStamp = moment().format();
       console.log('timestamp after formatting', timeStamp);
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#reference,
