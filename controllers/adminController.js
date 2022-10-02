@@ -468,6 +468,7 @@ module.exports.deleteAppointment = async (req, res) => {
     const {id} = req.params;
     const appointmentModel = new Appointment({});
     const result = await appointmentModel.deleteAppointment(id);
+    console.log(result)
     return res.status(200).json(result);
   } catch (error) {
     console.error(error.message)
