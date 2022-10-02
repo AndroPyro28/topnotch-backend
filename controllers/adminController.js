@@ -442,6 +442,10 @@ module.exports.pinFeedback = async (req, res) => {
     return res.status(200).json(result);
   } catch (error) {
     console.error(error.message)
+    return res.status(400).json({
+      msg: "something went wrong",
+      success: false,
+    });
   }
 }
 
@@ -453,6 +457,24 @@ module.exports.deleteFeedback = async (req, res) => {
     return res.status(200).json(result);
   } catch (error) {
     console.error(error.message)
-    
+    return res.status(400).json({
+      msg: "something went wrong",
+      success: false,
+    });
+  }
+}
+
+module.exports.deleteAppointment = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const appointmentModel = new Appointment({});
+    const result = await appointmentModel.deleteAppointment(id);
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error(error.message)
+    return res.status(400).json({
+      msg: "something went wrong",
+      success: false,
+    });
   }
 }

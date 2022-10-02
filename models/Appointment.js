@@ -236,6 +236,17 @@ class Appointment {
       console.error(error.message)
     }
   }
+
+  deleteAppointment = async (id) => {
+    try {
+      const selectQuery = `DELETE FROM appointments WHERE id = ?`;
+      const [result, _ ] = await poolConnection.execute(selectQuery, [id]);
+      return result
+    } catch (error) {
+      console.error(error.message)
+      
+    }
+  }
 }
 
 module.exports = Appointment;
