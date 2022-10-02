@@ -465,9 +465,9 @@ module.exports.deleteFeedback = async (req, res) => {
 
 module.exports.deleteAppointment = async (req, res) => {
   try {
+    console.log(req.body.values)
     const {id: appointmentId} = req.params;
     const {id: liveStreamId} = req.body.values.live_stream_data
-    console.log(req.body.values)
     const appointmentModel = new Appointment({});
     const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
     console.log(result)
