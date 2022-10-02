@@ -52,6 +52,16 @@ class Feedback {
       console.error(error.message)
     }
   }
+
+  deleteFeedback = async (id) => {
+    try {
+      const deleteQuery = `DELETE FROM feedback WHERE id = ?`
+      const [result, _ ] = await poolConnection.execute(deleteQuery, [id]);
+      return result;
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 }
 
 module.exports = Feedback;

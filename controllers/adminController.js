@@ -444,3 +444,15 @@ module.exports.pinFeedback = async (req, res) => {
     console.error(error.message)
   }
 }
+
+module.exports.deleteFeedback = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const feedbackModel = new Feedback({});
+    const result = await feedbackModel.deleteFeedback(id)
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error(error.message)
+    
+  }
+}

@@ -20,5 +20,5 @@ router.get('/dashboard', verifyUser, adminController.dashboardData)
 router.get('/getAllFeedback', verifyUser, adminController.getAllFeedback)
 router.post('/saleReport', verifyUser, adminController.saleReport)
 router.patch('/togglePinFeedback/:id', verifyUser, adminController.pinFeedback)
-
+router.delete('/deleteFeedback/:id', verifyUser, adminController.deleteFeedback)
 module.exports = router;
