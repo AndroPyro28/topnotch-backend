@@ -62,6 +62,28 @@ class Feedback {
       console.error(error.message)
     }
   }
+
+  getFirstThreeFeedback = async () => {
+    try {
+      const selectQuery = `SELECT 
+      f.ratings,
+      f.comments,
+      f.id,
+      f.pin,
+      c.profile_image_url
+      FROM feedback f
+      INNER JOIN customer c
+      ON c.id = f.customer_id
+      ORDER BY f.ratings DESC
+      LIMIT 3
+      `;
+      const [result, _] = await poolConnection.execute(selectQuery);
+
+      return result;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }
 
 module.exports = Feedback;
