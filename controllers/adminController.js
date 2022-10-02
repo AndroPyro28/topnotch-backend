@@ -437,11 +437,10 @@ module.exports.pinFeedback = async (req, res) => {
   try {
     const {id} = req.params;
     const {pin} = req.body.values
-    console.log(req.body);
     const feedbackModel = new Feedback({});
     const result = await feedbackModel.pinFeedback(id, pin)
-    console.log(result);
+    return res.status(200).json(result);
   } catch (error) {
-    
+    console.error(error.message)
   }
 }
