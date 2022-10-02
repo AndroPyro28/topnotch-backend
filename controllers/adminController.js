@@ -436,7 +436,7 @@ module.exports.saleReport = async (req, res) => {
 module.exports.pinFeedback = async (req, res) => {
   try {
     const {id} = req.params;
-    const {pin} = req.body
+    const {pin} = req.body.values
     console.log(req.body);
     const feedbackModel = new Feedback({});
     const result = await feedbackModel.pinFeedback(id, pin)
