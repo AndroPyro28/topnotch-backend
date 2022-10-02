@@ -10,7 +10,7 @@ router.post('/getToShipOrders/', verifyUser, adminController.getToShipOrders)
 router.get('/getOrderDetails/:reference', verifyUser, adminController.getOrderDetails);
 router.patch('/orderNextStage/:reference',verifyUser, adminController.orderNextStage);
 router.get('/getAppointment/:id', verifyUser, adminController.getAppointment);
-router.patch('/approveAppointment/:id', verifyUser, adminController.approveAppointment)
+router.patch('/updateAppointment/:id', verifyUser, adminController.updateAppointment)
 router.get('/generateVerifiedLink/', verifyUser, adminController.generateVerifiedLink)
 router.get('/getScheduleToday/:date', verifyUser, adminController.getScheduleToday)
 router.post('/startStreaming', verifyUser, adminController.startStreaming)

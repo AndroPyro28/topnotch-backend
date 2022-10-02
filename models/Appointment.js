@@ -150,14 +150,13 @@ class Appointment {
     }
   };
 
-  approveAppointment = async (id) => {
+  updateAppointment = async (id, status) => {
     try {
-      this.#status = "approved";
       const updateQuery = `UPDATE appointments SET date_n_time = ?, status = ? WHERE id = ?;`;
 
       const [result, _] = await poolConnection.execute(updateQuery, [
         this.#date_n_time,
-        this.#status,
+        status,
         id,
       ]);
 

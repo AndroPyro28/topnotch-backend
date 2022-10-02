@@ -187,14 +187,13 @@ module.exports.getAppointment = async (req, res) => {
   }
 };
 
-module.exports.approveAppointment = async (req, res) => {
+module.exports.updateAppointment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { appointment, customer } = req.body.values;
-    // console.log(customer);
+    const { appointment, customer, status } = req.body.values;
     const appointmentModel = new Appointment(appointment);
-    const result = await appointmentModel.approveAppointment(id);
-    sendTextMessageByAppointment(appointment, customer)
+    const result = await appointmentModel.updateAppointment(id, status);
+    sendTextMessageByAppointment(appointment, customer, status)
   } catch (error) {
     console.error(error.message);
     return res.status(400).json({
