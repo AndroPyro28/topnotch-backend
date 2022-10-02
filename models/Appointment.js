@@ -240,7 +240,7 @@ class Appointment {
     try {
       const multipleQuery = `
       ${
-        !liveStreamId ? '' : `UPDATE appointments SET live_stream_id = NULL WHERE = id ?;
+        !liveStreamId || liveStreamId == 'null' ? '' : `UPDATE appointments SET live_stream_id = NULL WHERE = id ?;
         DELETE FROM live_streams WHERE = id ?;`
       }
       DELETE FROM appointments WHERE id = ?;`;

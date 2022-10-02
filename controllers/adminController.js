@@ -468,15 +468,10 @@ module.exports.deleteAppointment = async (req, res) => {
     const {id} = req.params;
     const appointmentId = id.split('=')[0];
     const liveStreamId = id.split('=')[1];
-    console.log(appointmentId,
-      liveStreamId)
-      console.log(typeof liveStreamId === 'undefined')
-    // const {id} = req.params;
-    // const {id: liveStreamId} = req.body?.values?.live_stream_data
-    // const appointmentModel = new Appointment({});
-    // const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
-    // console.log(result)
-    // return res.status(200).json(result);
+    const appointmentModel = new Appointment({});
+    const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
+    console.log(result)
+    return res.status(200).json(result);
   } catch (error) {
     console.error('controller error', error.message)
     return res.status(400).json({
