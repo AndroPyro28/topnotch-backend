@@ -465,13 +465,13 @@ module.exports.deleteFeedback = async (req, res) => {
 
 module.exports.deleteAppointment = async (req, res) => {
   try {
-    console.log(req.body.values)
-    const {id: appointmentId} = req.params;
-    const {id: liveStreamId} = req.body?.values?.live_stream_data
-    const appointmentModel = new Appointment({});
-    const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
-    console.log(result)
-    return res.status(200).json(result);
+    console.log(req.body.values, req.params)
+    // const {id} = req.params;
+    // const {id: liveStreamId} = req.body?.values?.live_stream_data
+    // const appointmentModel = new Appointment({});
+    // const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
+    // console.log(result)
+    // return res.status(200).json(result);
   } catch (error) {
     console.error('controller error', error.message)
     return res.status(400).json({
