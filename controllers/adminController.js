@@ -432,3 +432,15 @@ module.exports.saleReport = async (req, res) => {
     });
   }
 };
+
+module.exports.pinFeedback = async (req, res) => {
+  try {
+    const {id} = req.params;
+
+    const feedbackModel = new Feedback({});
+
+    const result = await feedbackModel.pinFeedback(id)
+  } catch (error) {
+    
+  }
+}

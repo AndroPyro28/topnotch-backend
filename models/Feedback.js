@@ -17,6 +17,7 @@ class Feedback {
       f.ratings,
       f.comments,
       f.id,
+      f.pin,
       c.profile_image_url
       FROM feedback f
       INNER JOIN customer c
@@ -39,6 +40,14 @@ class Feedback {
       return result;
     } catch (error) {
       console.error(error.message)
+    }
+  }
+
+  pinFeedback = (id) => {
+    try {
+      const updateQuery = `UPDATE feedback SET `
+    } catch (error) {
+      
     }
   }
 }
