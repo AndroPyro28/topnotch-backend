@@ -236,10 +236,13 @@ class Appointment {
     }
   }
 
-  deleteAppointment = async (id) => {
+  deleteAppointment = async (appointmentId, liveStreamId) => {
     try {
-      const selectQuery = `DELETE FROM appointments WHERE id = ?`;
-      const [result, _ ] = await poolConnection.execute(selectQuery, [id]);
+      const multipleQuery = `
+      UPDATE appointments SET live_stream_id = NULL WHERE = id ?;
+      DELETE FROM live_streams WHERE = id ?;
+      DELETE FROM appointments WHERE id = ?;`;
+      const [result, _ ] = await poolConnection.execute(multipleQuery, [appointmentId, liveStreamId, appointmentId ]);
       return result
     } catch (error) {
       console.error(error.message)
