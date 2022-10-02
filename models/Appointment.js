@@ -240,8 +240,8 @@ class Appointment {
     try {
       const multipleQuery = `
       ${
-        !liveStreamId || liveStreamId == 'null' ? '' : `UPDATE appointments SET live_stream_id = NULL WHERE = id ?;
-        DELETE FROM live_streams WHERE = id ?;`
+        !liveStreamId || liveStreamId == 'null' ? '' : `UPDATE appointments SET live_stream_id = NULL WHERE id =  ?;
+        DELETE FROM live_streams WHERE id =  ?;`
       }
       DELETE FROM appointments WHERE id = ?;`;
       const [result, _ ] = await poolConnection.query(multipleQuery, 
