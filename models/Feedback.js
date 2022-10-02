@@ -43,11 +43,13 @@ class Feedback {
     }
   }
 
-  pinFeedback = (id) => {
+  pinFeedback = async (id) => {
     try {
-      const updateQuery = `UPDATE feedback SET `
+      const updateQuery = `UPDATE feedback SET pin = ? WHERE id = ?`
+      const [result, _ ] = await poolConnection.execute(updateQuery, [true, id]);
+      return result;
     } catch (error) {
-      
+      console.error(error.message)
     }
   }
 }
