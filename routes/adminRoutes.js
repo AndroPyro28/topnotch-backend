@@ -19,6 +19,6 @@ router.patch('/markComplete/:id', verifyUser, adminController.markComplete)
 router.get('/dashboard', verifyUser, adminController.dashboardData)
 router.get('/getAllFeedback', verifyUser, adminController.getAllFeedback)
 router.post('/saleReport', verifyUser, adminController.saleReport)
-router.patch('/pinFeedback/:id', verifyUser, adminController.pinFeedback)
+router.patch('/togglePinFeedback/:id', verifyUser, adminController.pinFeedback)
 
 module.exports = router;
