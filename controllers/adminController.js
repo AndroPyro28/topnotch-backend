@@ -437,6 +437,7 @@ module.exports.pinFeedback = async (req, res) => {
   try {
     const {id} = req.params;
     const {pin} = req.body
+    console.log(req.body);
     const feedbackModel = new Feedback({});
 
     const result = await feedbackModel.pinFeedback(id, pin)
