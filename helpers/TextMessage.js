@@ -113,7 +113,7 @@ module.exports.sendTextMessageByAppointment = (appointment, customer, status) =>
 
   const from = "Vonage APIs";
   const to = contact;
-// console.log(textMsg);
+console.log(textMsg);
   return vonage.message.sendSms(from, to, textMsg, (err, responseData) => {
     if (err) {
       console.log(err);
