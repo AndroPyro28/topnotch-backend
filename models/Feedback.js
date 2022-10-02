@@ -74,10 +74,11 @@ class Feedback {
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
+      WHERE f.pin = ?
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
-      const [result, _] = await poolConnection.execute(selectQuery);
+      const [result, _] = await poolConnection.execute(selectQuery, [true]);
 
       return result;
     } catch (error) {

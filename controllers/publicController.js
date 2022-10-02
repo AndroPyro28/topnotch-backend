@@ -4,8 +4,7 @@ module.exports.getFirstThreeFeedback = async (req, res) => {
     try {
         const feedbackModel = new Feedback({});
         const result = await feedbackModel.getFirstThreeFeedback();
-        console.log(result);
-        return res.status(200).json(result)
+        return res.status(200).json(result);
     } catch (error) {
         console.error(error.message)
     }
