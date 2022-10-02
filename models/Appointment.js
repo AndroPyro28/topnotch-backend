@@ -251,7 +251,7 @@ class Appointment {
         );
       return result
     } catch (error) {
-      console.error(error.message)
+      console.error('sql error', error.message)
       
     }
   }
