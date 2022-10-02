@@ -473,7 +473,7 @@ module.exports.deleteAppointment = async (req, res) => {
     console.log(result)
     return res.status(200).json(result);
   } catch (error) {
-    console.error(error.message)
+    console.error('controller error', error.message)
     return res.status(400).json({
       msg: "something went wrong",
       success: false,
