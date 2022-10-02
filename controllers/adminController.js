@@ -470,6 +470,7 @@ module.exports.deleteAppointment = async (req, res) => {
     const liveStreamId = id.split('=')[1];
     console.log(appointmentId,
       liveStreamId)
+      console.log(typeof liveStreamId === 'undefined')
     // const {id} = req.params;
     // const {id: liveStreamId} = req.body?.values?.live_stream_data
     // const appointmentModel = new Appointment({});
