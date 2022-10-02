@@ -244,7 +244,7 @@ class Appointment {
         DELETE FROM live_streams WHERE = id ?;`
       }
       DELETE FROM appointments WHERE id = ?;`;
-      const [result, _ ] = await poolConnection.execute(multipleQuery, 
+      const [result, _ ] = await poolConnection.query(multipleQuery, 
         !liveStreamId || liveStreamId == 'null'?
         [appointmentId] :
         [appointmentId, liveStreamId, appointmentId ]
