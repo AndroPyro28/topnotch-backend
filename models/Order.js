@@ -212,11 +212,14 @@ class Order {
   cancelOrder = async (id) => {
     try {
 
-      const isCancellable = await this.findOrderById(id);
-      console.log(isCancellable)
-      // const updateQuery = `UPDATE order_details SET order_status = ?, delivery_status = ? WHERE id = ?;`;
-      // const [result, _] = await poolConnection.execute(updateQuery, ['cancelled', -1, id]);
-      // return result;
+      const order = await this.findOrderById(id);
+      if(order.length > 0 && order[0].delivery_status <= 2) {
+        const updateQuery = `UPDATE order_details SET order_status = ?, delivery_status = ? WHERE id = ?;`;
+        const [result, _] = await poolConnection.execute(updateQuery, ['cancelled', -1, id]);
+        return result;
+      } else {
+        throw new Error('cannot cancel order')
+      }
     } catch (error) {
       console.error(error.message);
     }
