@@ -211,7 +211,6 @@ class Order {
 
   cancelOrder = async (id) => {
     try {
-
       const order = await this.findOrderById(id);
       if(order.length > 0 && order[0].delivery_status <= 2) {
         const updateQuery = `UPDATE order_details SET order_status = ?, delivery_status = ? WHERE id = ?;`;
