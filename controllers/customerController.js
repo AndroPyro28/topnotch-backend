@@ -513,6 +513,13 @@ module.exports.submitFeedback = async (req, res) => {
   }
 }
 
+module.exports.cancelOrder = async (req, res) => {
+  try {
+    console.log(req.params);
+  } catch (error) {
+    console.error(error)
+  }
+}
 module.exports.paymentsuccess = async (req, res) => {
   console.log(':::::GCASH API POST::::', req.body)
 }
