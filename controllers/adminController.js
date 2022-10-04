@@ -336,6 +336,8 @@ module.exports.dashboardData = async (req, res) => {
     let totalSalesToday = 0;
     const dateToday = getDateToday();
     const totalTransactionsPerMonth = {};
+    const totalCancelledTransactionsPerMonth = {}
+    let totalCancelledTransactions = 0
     data.forEach((sale) => {
       const date = new Date(sale.order_date);
 
@@ -356,8 +358,15 @@ module.exports.dashboardData = async (req, res) => {
         salesOfTheMonth += totalAmount;
         overAllSales += totalAmount;
         dataObj[currentMonth] = salesOfTheMonth;
+      } else {
+        if (!totalCancelledTransactionsPerMonth[currentMonth]) {
+          totalCancelledTransactionsPerMonth[currentMonth] = 1;
+        } else {
+          totalCancelledTransactionsPerMonth[currentMonth] += 1;
+        }
+        totalCancelledTransactions += 1;
       }
-      
+
       if (!totalTransactionsPerMonth[currentMonth]) {
         totalTransactionsPerMonth[currentMonth] = 1;
       } else {
@@ -372,6 +381,8 @@ module.exports.dashboardData = async (req, res) => {
         totalSalesToday,
         totalNumberOfAllTransactions: data.length,
         totalTransactionsPerMonth,
+        totalCancelledTransactionsPerMonth,
+        totalCancelledTransactions,
       },
     });
   } catch (error) {
