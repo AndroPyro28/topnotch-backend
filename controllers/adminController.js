@@ -4,7 +4,10 @@ const Appointment = require("../models/Appointment");
 const { assignToken } = require("../helpers/AuthTokenHandler");
 const Order = require("../models/Order");
 const generateId = require("../helpers/GenerateId");
-const { sendTextMessageByStatus, sendTextMessageByAppointment } = require("../helpers/TextMessage");
+const {
+  sendTextMessageByStatus,
+  sendTextMessageByAppointment,
+} = require("../helpers/TextMessage");
 const { getDateToday } = require("../helpers/DateFormatter");
 const LiveStreams = require("../models/LiveStreams");
 const getTime = require("../helpers/getTime");
@@ -193,7 +196,7 @@ module.exports.updateAppointment = async (req, res) => {
     const { appointment, customer, status } = req.body.values;
     const appointmentModel = new Appointment(appointment);
     const result = await appointmentModel.updateAppointment(id, status);
-    sendTextMessageByAppointment(appointment, customer, status)
+    sendTextMessageByAppointment(appointment, customer, status);
   } catch (error) {
     console.error(error.message);
     return res.status(400).json({
@@ -337,28 +340,29 @@ module.exports.dashboardData = async (req, res) => {
       const date = new Date(sale.order_date);
 
       const totalAmount = sale.total_amount;
+      const currentMonth = date.getMonth();
 
-      if(sale.order_status !== 'cancelled') {
-        const currentMonth = date.getMonth();
+      if (sale.order_status !== "cancelled") {
         let salesOfTheMonth = dataObj[currentMonth];
-        if (!totalTransactionsPerMonth[currentMonth]) {
-          totalTransactionsPerMonth[currentMonth] = 1;
-        } else {
-          totalTransactionsPerMonth[currentMonth] += 1;
-        }
+        
         if (salesOfTheMonth == null || salesOfTheMonth == undefined) {
           salesOfTheMonth = 0;
         }
-  
+
         if (date.toISOString().slice(0, 10) == dateToday) {
           totalSalesToday += totalAmount;
         }
-  
+
         salesOfTheMonth += totalAmount;
         overAllSales += totalAmount;
         dataObj[currentMonth] = salesOfTheMonth;
       }
-     
+      
+      if (!totalTransactionsPerMonth[currentMonth]) {
+        totalTransactionsPerMonth[currentMonth] = 1;
+      } else {
+        totalTransactionsPerMonth[currentMonth] += 1;
+      }
     });
     return res.status(200).json({
       success: true,
@@ -420,8 +424,11 @@ module.exports.getAllFeedback = async (req, res) => {
 module.exports.saleReport = async (req, res) => {
   try {
     const multipleTable = new MultipleTable({});
-    const {filterDateFrom, filterDateTo} = req.body.values
-    const queryResult = await multipleTable.getSalesReport(filterDateFrom, filterDateTo);
+    const { filterDateFrom, filterDateTo } = req.body.values;
+    const queryResult = await multipleTable.getSalesReport(
+      filterDateFrom,
+      filterDateTo
+    );
     return res.status(200).json({
       data: queryResult,
       success: true,
@@ -436,49 +443,52 @@ module.exports.saleReport = async (req, res) => {
 
 module.exports.pinFeedback = async (req, res) => {
   try {
-    const {id} = req.params;
-    const {pin} = req.body.values
+    const { id } = req.params;
+    const { pin } = req.body.values;
     const feedbackModel = new Feedback({});
-    const result = await feedbackModel.pinFeedback(id, pin)
+    const result = await feedbackModel.pinFeedback(id, pin);
     return res.status(200).json(result);
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
     return res.status(400).json({
       msg: "something went wrong",
       success: false,
     });
   }
-}
+};
 
 module.exports.deleteFeedback = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const feedbackModel = new Feedback({});
-    const result = await feedbackModel.deleteFeedback(id)
+    const result = await feedbackModel.deleteFeedback(id);
     return res.status(200).json(result);
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
     return res.status(400).json({
       msg: "something went wrong",
       success: false,
     });
   }
-}
+};
 
 module.exports.deleteAppointment = async (req, res) => {
   try {
-    const {id} = req.params;
-    const appointmentId = id.split('=')[0];
-    const liveStreamId = id.split('=')[1];
+    const { id } = req.params;
+    const appointmentId = id.split("=")[0];
+    const liveStreamId = id.split("=")[1];
     const appointmentModel = new Appointment({});
-    const result = await appointmentModel.deleteAppointment(appointmentId, liveStreamId);
-    console.log(result)
+    const result = await appointmentModel.deleteAppointment(
+      appointmentId,
+      liveStreamId
+    );
+    console.log(result);
     return res.status(200).json(result);
   } catch (error) {
-    console.error('controller error', error.message)
+    console.error("controller error", error.message);
     return res.status(400).json({
       msg: "something went wrong",
       success: false,
     });
   }
-}
+};
