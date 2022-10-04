@@ -338,25 +338,27 @@ module.exports.dashboardData = async (req, res) => {
 
       const totalAmount = sale.total_amount;
 
-      const currentMonth = date.getMonth();
-
-      let salesOfTheMonth = dataObj[currentMonth];
-      if (!totalTransactionsPerMonth[currentMonth]) {
-        totalTransactionsPerMonth[currentMonth] = 1;
-      } else {
-        totalTransactionsPerMonth[currentMonth] += 1;
+      if(sale.order_status !== 'cancelled') {
+        const currentMonth = date.getMonth();
+        let salesOfTheMonth = dataObj[currentMonth];
+        if (!totalTransactionsPerMonth[currentMonth]) {
+          totalTransactionsPerMonth[currentMonth] = 1;
+        } else {
+          totalTransactionsPerMonth[currentMonth] += 1;
+        }
+        if (salesOfTheMonth == null || salesOfTheMonth == undefined) {
+          salesOfTheMonth = 0;
+        }
+  
+        if (date.toISOString().slice(0, 10) == dateToday) {
+          totalSalesToday += totalAmount;
+        }
+  
+        salesOfTheMonth += totalAmount;
+        overAllSales += totalAmount;
+        dataObj[currentMonth] = salesOfTheMonth;
       }
-      if (salesOfTheMonth == null || salesOfTheMonth == undefined) {
-        salesOfTheMonth = 0;
-      }
-
-      if (date.toISOString().slice(0, 10) == dateToday) {
-        totalSalesToday += totalAmount;
-      }
-
-      salesOfTheMonth += totalAmount;
-      overAllSales += totalAmount;
-      dataObj[currentMonth] = salesOfTheMonth;
+     
     });
     return res.status(200).json({
       success: true,
