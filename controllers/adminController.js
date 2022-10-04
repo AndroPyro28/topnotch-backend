@@ -493,7 +493,6 @@ module.exports.deleteAppointment = async (req, res) => {
       appointmentId,
       liveStreamId
     );
-    console.log(result);
     return res.status(200).json(result);
   } catch (error) {
     console.error("controller error", error.message);
