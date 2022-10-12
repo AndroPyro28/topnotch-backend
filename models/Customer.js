@@ -69,7 +69,7 @@ class Customer {
       this.#phoneNo,
       this.#email,
     ]);
-    console.log(customerAndAdmin, this.#id)
+    console.log(customerAndAdmin, this.#id, customerAndAdmin[0]?.id)
     if(customerAndAdmin[0]?.id == this.#id && customerAndAdmin[1].length == 0) {
       return false
     }
