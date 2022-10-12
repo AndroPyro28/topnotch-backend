@@ -57,7 +57,7 @@ class Customer {
       this.#phoneNo,
       this.#email,
     ]);
-
+    console.log(customerAndAdmin)
     return customerAndAdmin[0].length > 0 || customerAndAdmin[1].length > 0
   };
 
