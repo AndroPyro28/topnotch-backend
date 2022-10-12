@@ -69,7 +69,8 @@ class Customer {
       this.#phoneNo,
       this.#email,
     ]);
-    if(customerAndAdmin[0]?.id === this.#id && customerAndAdmin[1].length == 0) {
+    console.log(customerAndAdmin, this.#id)
+    if(customerAndAdmin[0]?.id == this.#id && customerAndAdmin[1].length == 0) {
       return false
     }
     return customerAndAdmin[0].length > 0 || customerAndAdmin[1].length > 0
