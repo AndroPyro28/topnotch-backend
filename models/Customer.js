@@ -52,7 +52,7 @@ class Customer {
   checkIfExistByPhoneEmail = async () => {
     const checkEmailPhone = `SELECT * FROM customer WHERE email = ? OR phoneNo = ?;
                              SELECT * FROM admin WHERE email = ?;`;
-    const [customerAndAdmin, _] = await poolConnection.execute(checkEmailPhone, [
+    const [customerAndAdmin, _] = await poolConnection.query(checkEmailPhone, [
       this.#email,
       this.#phoneNo,
       this.#email,
