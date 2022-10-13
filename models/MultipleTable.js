@@ -81,6 +81,16 @@ class MultipleTable {
             console.error(erroor)            
         }
     }
+
+    removeHashReset = async (table, id) => {
+        try {
+            const updateQuery = `UPDATE ${table} SET passwordresettoken = NULL WHERE id = ?`;
+            const [result, _] = await poolConnection.query(updateQuery, [id])
+            return result
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 
 module.exports = MultipleTable;
