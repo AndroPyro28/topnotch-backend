@@ -20,7 +20,7 @@ try {
     const result = await multipleQuery.findEmail(email)
     const customer = result[0][0]
     const admin = result[1][0]
-    const code = generateCode()
+    const code = generateCode()()
     if(customer?.id) {
         gmailSender(customer?.email, code)
         const type='customer'
