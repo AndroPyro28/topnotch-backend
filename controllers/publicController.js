@@ -22,14 +22,14 @@ try {
     const admin = result[1][0]
     const code = generateCode()
     if(customer?.id) {
-        gmailSender(customer?.email)
+        gmailSender(customer?.email, code)
         const type='customer'
         const token = signTokenForEmail(customer.id, code, type);
         const result = await multipleQuery.updateHashReset(token, customer?.id, type)
         console.log({type, result})
     }
     else if(admin?.id) {
-        gmailSender(admin?.email)
+        gmailSender(admin?.email, code)
         const type='admin'
         const token = signTokenForEmail(admin.id, code, type);
         const result = await multipleQuery.updateHashReset(token, admin?.id, type)

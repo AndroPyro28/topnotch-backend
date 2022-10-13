@@ -16,7 +16,7 @@ const gmailSender = (email, code) => {
       to: email,
       subject: "Password Reset",
       text: "Password Reset",
-      html: "<div><b>Use this code to reset your password</b><br><p> Code: 12345</p></div>",
+      html: `<div><b>Use this code to reset your password</b><br><p> Code: ${code}</p></div>`,
     };
 
     mailTransporter.sendMail(details, (err, info) => {
