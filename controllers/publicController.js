@@ -4,6 +4,7 @@ const gmailSender = require("../helpers/GmailSender");
 const {
   signTokenForEmail,
   verifyToken,
+  signTokenForPasswordReset
 } = require("../helpers/AuthTokenHandler");
 const generateCode = require("../helpers/GenerateId");
 
@@ -85,7 +86,7 @@ module.exports.verifyCode = async (req, res) => {
         decoded?.usertype == "customer"
       ) {
         multipleQuery.removeHashReset(decoded?.usertype, customer?.id);
-        const token = signTokenForEmail(customer.id, decoded?.usertype);
+        const token = signTokenForPasswordReset(customer.id, decoded?.usertype);
         console.log(token);
         return res.status(200).json({
           reset_token: token,
@@ -101,8 +102,7 @@ module.exports.verifyCode = async (req, res) => {
         decoded?.usertype == "admin"
       ) {
         multipleQuery.removeHashReset(decoded?.usertype, admin?.id);
-        const token = signTokenForEmail(admin.id, decoded?.usertype);
-        console.log(token);
+        const token = signTokenForPasswordReset(admin.id, decoded?.usertype);
         return res.status(200).json({
           reset_token: token,
           success: true,

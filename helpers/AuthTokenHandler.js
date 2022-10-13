@@ -17,4 +17,10 @@ const signTokenForEmail = (id, code, usertype) => {
   });
 }
 
-module.exports = { assignToken, verifyToken, signTokenForEmail };
+const signTokenForPasswordReset = (id, usertype) => {
+  return jwt.sign({ id, usertype }, process.env.jwtSecret, {
+    expiresIn:'5m',
+  });
+}
+
+module.exports = { assignToken, verifyToken, signTokenForEmail, signTokenForPasswordReset };
