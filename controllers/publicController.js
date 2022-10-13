@@ -82,10 +82,10 @@ module.exports.verifyCode = async (req, res) => {
       if (
         decoded.code == code &&
         decoded?.id == customer?.id &&
-        decoded?.userType == "customer"
+        decoded?.usertype == "customer"
       ) {
-        multipleQuery.removeHashReset(decoded?.userType, customer?.id);
-        const token = signTokenForEmail(customer.id, decoded?.userType);
+        multipleQuery.removeHashReset(decoded?.usertype, customer?.id);
+        const token = signTokenForEmail(customer.id, decoded?.usertype);
         console.log(token);
         return res.status(200).json({
           reset_token: token,
@@ -98,10 +98,10 @@ module.exports.verifyCode = async (req, res) => {
       if (
         decoded.code == code &&
         decoded?.id == customer?.id &&
-        decoded?.userType == "admin"
+        decoded?.usertype == "admin"
       ) {
-        multipleQuery.removeHashReset(decoded?.userType, admin?.id);
-        const token = signTokenForEmail(admin.id, decoded?.userType);
+        multipleQuery.removeHashReset(decoded?.usertype, admin?.id);
+        const token = signTokenForEmail(admin.id, decoded?.usertype);
         console.log(token);
         return res.status(200).json({
           reset_token: token,
