@@ -1,6 +1,8 @@
 const Feedback = require("../models/Feedback");
 const MultipleTable = require("../models/MultipleTable");
 const gmailSender = require("../helpers/GmailSender");
+const bcrypt = require("bcryptjs");
+
 const {
   signTokenForEmail,
   verifyToken,
@@ -130,10 +132,11 @@ module.exports.updatePassword = async (req, res) => {
       throw new Error('password and confirm password do not match!')
     }
     const {userinfo} = req.headers;
-        const {userType} = JSON.parse(userinfo); 
+    const {userType} = JSON.parse(userinfo); 
+    const hashedPassword = await bcrypt.hash(password, 6);
     const {id} = req.currentUser;
     const multipleQuery = new MultipleTable();
-    const result = await multipleQuery.updateUserPassword(id, userType, password)
+    const result = await multipleQuery.updateUserPassword(id, userType, hashedPassword)
 
     return res.status(200).json({
       msg:'password updated!',
