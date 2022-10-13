@@ -59,6 +59,18 @@ class MultipleTable {
             console.error(error.message)
         }
     }
+
+    findEmail = async (email) => {
+        try {
+            const selectQuery = `SELECT * FROM customer WHERE email = ?;
+            SELECT * FROM admin WHERE email = ?;`
+
+            const [result, _] = await poolConnection.query(selectQuery, [email, email])
+            return result
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 
 module.exports = MultipleTable;
