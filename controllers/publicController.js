@@ -10,6 +10,10 @@ module.exports.getFirstThreeFeedback = async (req, res) => {
         return res.status(200).json(result);
     } catch (error) {
         console.error(error.message)
+        return res.status(200).json({
+            msg: error.message,
+            success: false
+        })
     }
 }
 
@@ -27,6 +31,9 @@ try {
         const token = signTokenForEmail(customer.id, code, type);
         const result = await multipleQuery.updateHashReset(token, customer?.id, type)
         console.log({type, result})
+        return res.status(200).json({
+            message:'Code has been sent to your email.'
+        })
     }
     else if(admin?.id) {
         gmailSender(admin?.email, code)
@@ -34,11 +41,19 @@ try {
         const token = signTokenForEmail(admin.id, code, type);
         const result = await multipleQuery.updateHashReset(token, admin?.id, type)
         console.log({type, result})
+        return res.status(200).json({
+            msg:'Code has been sent to your email.',
+            success: true
+        })
     } 
     else {
         throw new Error('email cannot be found')
     }
 } catch (error) {
     console.error(error)
+    return res.status(200).json({
+        msg: error.message,
+        success: false
+    })
 }
 }
