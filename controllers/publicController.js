@@ -65,7 +65,7 @@ module.exports.findAccountAndSendCode = async (req, res) => {
   }
 };
 
-module.exports.verifyCode = async () => {
+module.exports.verifyCode = async (req, res) => {
   try {
     const { email, code } = req.body.values;
     const multipleQuery = new MultipleTable();
