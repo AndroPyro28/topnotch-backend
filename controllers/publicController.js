@@ -78,7 +78,7 @@ module.exports.verifyCode = async (req, res) => {
     console.log({ customer, admin });
     if (customer?.id) {
       const decoded = verifyToken(customer?.passwordResetToken);
-      console.log("decoded admin", decoded, customer);
+      console.log("decoded customer", decoded, customer);
       if (
         decoded.code == code &&
         decoded?.id == customer?.id &&
