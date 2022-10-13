@@ -125,13 +125,28 @@ module.exports.verifyCode = async (req, res) => {
 module.exports.updatePassword = async (req, res) => {
   try {
     const {password, confirmPassword} = req.body;
+
+    if(password != confirmPassword) {
+      throw new Error('password and confirm password do not match!')
+    }
     const {userinfo} = req.headers;
         const {userType} = JSON.parse(userinfo); 
     const {id} = req.currentUser;
     const multipleQuery = new MultipleTable();
+    const res = await multipleQuery.updateUserPassword(id, userType, password)
+    console.log(res);
 
-    console.log({password, confirmPassword, id, userType});
+    return res.status(200).json({
+      msg:'password updated!',
+      success: true,
+      data:res
+    })
+    
   } catch (error) {
     console.error(error)
+    return res.status(200).json({
+      msg: error.message,
+      success: false,
+    });
   }
 }

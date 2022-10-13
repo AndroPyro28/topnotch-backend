@@ -91,6 +91,17 @@ class MultipleTable {
             console.error(error)
         }
     }
+
+
+    updateUserPassword = async (id, table, password) => {
+        try {
+            const updateQuery = `UPDATE ${table} SET password = ? WHERE id = ?`;
+            const [result, _] = await poolConnection.query(updateQuery, [password, id])
+            return result
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 
 module.exports = MultipleTable;
