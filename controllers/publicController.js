@@ -1,5 +1,4 @@
 const Feedback = require("../models/Feedback");
-const nodemailer = require('nodemailer');
 const MultipleTable = require("../models/MultipleTable");
 const gmailSender = require("../helpers/GmailSender");
 
