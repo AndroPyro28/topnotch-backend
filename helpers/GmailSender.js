@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const gmailSender = (email) => {
+const gmailSender = (email, code) => {
   try {
     const mailTransporter = nodemailer.createTransport({
       service: "gmail",
