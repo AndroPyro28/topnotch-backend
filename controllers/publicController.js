@@ -93,7 +93,7 @@ module.exports.verifyCode = async () => {
             return res.status(200).json({
                 reset_token: token,
                 success:true
-            })    
+            })
         }
     } else {
         throw new Error('Invalid code or invalid email detected')
