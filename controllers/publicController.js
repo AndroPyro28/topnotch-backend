@@ -74,10 +74,10 @@ module.exports.verifyCode = async (req, res) => {
     const admin = result[1][0];
     if(customer?.id) {
         const decoded = verifyToken(customer?.passwordResetToken);
-
         if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'customer') {
             multipleQuery.removeHashReset(decoded?.userType, customer?.id);
             const token = signTokenForEmail(customer.id, decoded?.userType);
+            console.log(token)
             return res.status(200).json({
                 reset_token: token,
                 success:true
@@ -89,6 +89,7 @@ module.exports.verifyCode = async (req, res) => {
         if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'admin') {
             multipleQuery.removeHashReset(decoded?.userType, admin?.id);
             const token = signTokenForEmail(admin.id, decoded?.userType);
+            console.log(token)
             return res.status(200).json({
                 reset_token: token,
                 success:true
