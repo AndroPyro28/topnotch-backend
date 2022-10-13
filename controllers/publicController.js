@@ -74,6 +74,7 @@ module.exports.verifyCode = async (req, res) => {
     const admin = result[1][0];
     if(customer?.id) {
         const decoded = verifyToken(customer?.passwordResetToken);
+      console.log('decoded admin', decoded, customer)
         if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'customer') {
             multipleQuery.removeHashReset(decoded?.userType, customer?.id);
             const token = signTokenForEmail(customer.id, decoded?.userType);
@@ -85,7 +86,8 @@ module.exports.verifyCode = async (req, res) => {
         }
 
     } else if(admin?.id) {
-        const decoded = verifyToken(admin?.passwordResetToken);
+      const decoded = verifyToken(admin?.passwordResetToken);
+      console.log('decoded admin', decoded, admin)
         if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'admin') {
             multipleQuery.removeHashReset(decoded?.userType, admin?.id);
             const token = signTokenForEmail(admin.id, decoded?.userType);
