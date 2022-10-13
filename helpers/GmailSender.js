@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const gmailSender = (email) => {
   try {
     const mailTransporter = nodemailer.createTransport({
