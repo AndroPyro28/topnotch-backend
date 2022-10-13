@@ -90,6 +90,7 @@ module.exports.verifyCode = async (req, res) => {
         console.log(token);
         return res.status(200).json({
           reset_token: token,
+          usertype:decoded?.usertype,
           success: true,
         });
       }
@@ -105,6 +106,7 @@ module.exports.verifyCode = async (req, res) => {
         const token = signTokenForPasswordReset(admin.id, decoded?.usertype);
         return res.status(200).json({
           reset_token: token,
+          usertype:decoded?.usertype,
           success: true,
         });
       }
