@@ -133,15 +133,15 @@ module.exports.updatePassword = async (req, res) => {
         const {userType} = JSON.parse(userinfo); 
     const {id} = req.currentUser;
     const multipleQuery = new MultipleTable();
-    const res = await multipleQuery.updateUserPassword(id, userType, password)
-    console.log(res);
+    const result = await multipleQuery.updateUserPassword(id, userType, password)
+    console.log(result);
 
     return res.status(200).json({
       msg:'password updated!',
       success: true,
-      data:res
+      data:result
     })
-    
+
   } catch (error) {
     console.error(error)
     return res.status(200).json({
