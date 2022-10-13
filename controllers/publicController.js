@@ -1,7 +1,10 @@
 const Feedback = require("../models/Feedback");
 const MultipleTable = require("../models/MultipleTable");
 const gmailSender = require("../helpers/GmailSender");
-const { signTokenForEmail, verifyToken } = require("../helpers/AuthTokenHandler");
+const {
+  signTokenForEmail,
+  verifyToken,
+} = require("../helpers/AuthTokenHandler");
 const generateCode = require("../helpers/GenerateId");
 
 module.exports.getFirstThreeFeedback = async (req, res) => {
@@ -72,39 +75,47 @@ module.exports.verifyCode = async (req, res) => {
     const result = await multipleQuery.findEmail(email);
     const customer = result[0][0];
     const admin = result[1][0];
-    if(customer?.id) {
-        const decoded = verifyToken(customer?.passwordResetToken);
-      console.log('decoded admin', decoded, customer)
-        if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'customer') {
-            multipleQuery.removeHashReset(decoded?.userType, customer?.id);
-            const token = signTokenForEmail(customer.id, decoded?.userType);
-            console.log(token)
-            return res.status(200).json({
-                reset_token: token,
-                success:true
-            })
-        }
-
-    } else if(admin?.id) {
+    console.log({ customer, admin });
+    if (customer?.id) {
+      const decoded = verifyToken(customer?.passwordResetToken);
+      console.log("decoded admin", decoded, customer);
+      if (
+        decoded.code == code &&
+        decoded?.id == customer?.id &&
+        decoded?.userType == "customer"
+      ) {
+        multipleQuery.removeHashReset(decoded?.userType, customer?.id);
+        const token = signTokenForEmail(customer.id, decoded?.userType);
+        console.log(token);
+        return res.status(200).json({
+          reset_token: token,
+          success: true,
+        });
+      }
+    } else if (admin?.id) {
       const decoded = verifyToken(admin?.passwordResetToken);
-      console.log('decoded admin', decoded, admin)
-        if(decoded.code == code && decoded?.id == customer?.id && decoded?.userType == 'admin') {
-            multipleQuery.removeHashReset(decoded?.userType, admin?.id);
-            const token = signTokenForEmail(admin.id, decoded?.userType);
-            console.log(token)
-            return res.status(200).json({
-                reset_token: token,
-                success:true
-            })
-        }
+      console.log("decoded admin", decoded, admin);
+      if (
+        decoded.code == code &&
+        decoded?.id == customer?.id &&
+        decoded?.userType == "admin"
+      ) {
+        multipleQuery.removeHashReset(decoded?.userType, admin?.id);
+        const token = signTokenForEmail(admin.id, decoded?.userType);
+        console.log(token);
+        return res.status(200).json({
+          reset_token: token,
+          success: true,
+        });
+      }
     } else {
-        throw new Error('Invalid code or invalid email detected')
+      throw new Error("Invalid code or invalid email detected");
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res.status(200).json({
-        msg: error.message,
-        success: false,
-      });
+      msg: error.message,
+      success: false,
+    });
   }
 };
