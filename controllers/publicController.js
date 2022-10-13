@@ -125,8 +125,12 @@ module.exports.verifyCode = async (req, res) => {
 module.exports.updatePassword = async (req, res) => {
   try {
     const {password, confirmPassword} = req.body;
+    const {userinfo} = req.headers;
+        const {userType} = JSON.parse(userinfo); 
     const {id} = req.currentUser;
-    console.log({password, confirmPassword, id});
+    const multipleQuery = new MultipleTable();
+
+    console.log({password, confirmPassword, id, userType});
   } catch (error) {
     console.error(error)
   }
