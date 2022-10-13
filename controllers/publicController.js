@@ -1,6 +1,7 @@
 const Feedback = require("../models/Feedback");
 const nodemailer = require('nodemailer');
 const MultipleTable = require("../models/MultipleTable");
+const gmailSender = require("../helpers/GmailSender");
 
 module.exports.getFirstThreeFeedback = async (req, res) => {
     try {
@@ -17,7 +18,18 @@ try {
     const multipleQuery = new MultipleTable();
     const {email} = req.body.values;
     const result = await multipleQuery.findEmail(email)
-    console.log(result)
+    const customer = result[0][0]
+    const admin = result[1][0]
+
+    if(customer?.id) {
+        gmailSender(customer?.email)
+    }
+    else if(admin?.id) {
+        gmailSender(admin?.email)
+    } 
+    else {
+        throw new Error('email cannot be found')
+    }
 } catch (error) {
     console.error(error)
 }

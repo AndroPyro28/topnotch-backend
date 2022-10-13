@@ -1,4 +1,4 @@
-const gmailSender = () => {
+const gmailSender = (email) => {
   try {
     const mailTransporter = nodemailer.createTransport({
       service: "gmail",
@@ -11,7 +11,7 @@ const gmailSender = () => {
 
     const details = {
       from: process.env.NODEMAILER_GMAIL,
-      to: "jeanmargarette11@gmail.com",
+      to: email,
       subject: "Password Reset",
       text: "Password Reset",
       html: "<div><b>Use this code to reset your password</b><br><p> Code: 12345</p></div>",
