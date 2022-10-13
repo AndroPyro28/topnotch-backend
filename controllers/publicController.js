@@ -72,7 +72,7 @@ module.exports.verifyCode = async () => {
     const result = await multipleQuery.findEmail(email);
     const customer = result[0][0];
     const admin = result[1][0];
-
+    console.log({email, code})
     if(customer?.id) {
         const decoded = verifyToken(customer?.passwordResetToken);
 
