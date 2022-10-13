@@ -121,3 +121,13 @@ module.exports.verifyCode = async (req, res) => {
     });
   }
 };
+
+module.exports.updatePassword = async (req, res) => {
+  try {
+    const {password, confirmPassword} = req.body;
+    const {id} = req.currentUser;
+    console.log({password, confirmPassword, id});
+  } catch (error) {
+    console.error(error)
+  }
+}
