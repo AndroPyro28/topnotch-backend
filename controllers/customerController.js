@@ -90,6 +90,8 @@ module.exports.updateInfo = async (req, res) => {
         "topnotch_profilepic/eadlgosq2pioplvi6lfs"
     ) {
       deleteOneUser(req.body.values.user.profile_image_id);
+    } else {
+      throw new Error('Invalid File Type')
     }
 
     if (
@@ -99,6 +101,8 @@ module.exports.updateInfo = async (req, res) => {
       const cloudinaryResponse = await uploadOneUser(req.body.values?.profileImg);
       req.body.values.user.profile_image_url = cloudinaryResponse.url;
       req.body.values.user.profile_image_id = cloudinaryResponse.public_id;
+    } else {
+      throw new Error('Invalid File Type')
     }
 
     const customer = new Customer(req.body.values.user);
