@@ -344,8 +344,7 @@ module.exports.addAppointment = async (req, res) => {
       image
     } = req.body.values;
 
-
-    if(!image?.includes('image')) {
+    if(!image?.includes('image') || !image) {
       throw new Error('Invalid File Type')
     }
     const cloudinaryResponse = await uploadOnePetImage(image);
