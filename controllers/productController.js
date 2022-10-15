@@ -103,6 +103,7 @@ module.exports.updateItem = async (req, res) => {
       req.body.values.item.product_image_url = cloudinary.url;
       req.body.values.item.product_image_id = cloudinary.public_id;
     }
+    console.log(req.body.values.item)
     if(Object.values(req.body.values.item).some(value => value == '')) {
       throw new Error('All fields are required to update the product')
     }
