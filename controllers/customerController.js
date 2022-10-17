@@ -558,6 +558,7 @@ module.exports.getAllAdmin = async (req, res) => {
     });
 
   } catch (error) {
+    console.error(error)
     return res.status(200).json({
       msg: error.message,
       success: false
