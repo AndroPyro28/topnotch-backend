@@ -81,7 +81,7 @@ class Appointment {
         admin_id,
         pet_image)
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         `;
       const [result, _] = await poolConnection.execute(insertQuery, [
         this.#pet_name,

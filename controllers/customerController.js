@@ -345,7 +345,6 @@ module.exports.addAppointment = async (req, res) => {
       image,
       admin_id
     } = req.body.values;
-    console.log(admin_id);
     if(!image || image == {} || image.length <= 0 || !image?.includes('image')) {
       throw new Error('Invalid File Type')
     }
