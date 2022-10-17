@@ -31,8 +31,7 @@ class Admin {
     getAllAdmin = async () => {
         try {
             const selectQuery = `SELECT * FROM admin`;
-            const [result, _] = await  poolConnection.execute(selectQuery);
-            console.log(result);
+            const [result, _] = await poolConnection.execute(selectQuery);
 
             return result
         } catch (error) {
