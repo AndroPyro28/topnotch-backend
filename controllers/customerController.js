@@ -342,7 +342,8 @@ module.exports.addAppointment = async (req, res) => {
       appointmentType,
       dateNtime,
       additional_details,
-      image
+      image,
+      admin_id
     } = req.body.values;
     console.log(req.body.values);
     if(!image || image == {} || image.length <= 0 || !image?.includes('image')) {
@@ -360,7 +361,8 @@ module.exports.addAppointment = async (req, res) => {
       date_n_time: dateNtime,
       additional_details: additional_details,
       customer_id: req.currentUser.id,
-      image
+      image,
+      admin_id: admin_id
     });
 
     const { result, success } = await appointment.addAppointment();

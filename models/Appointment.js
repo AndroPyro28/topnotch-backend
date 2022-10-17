@@ -78,6 +78,7 @@ class Appointment {
         gender,
         date_n_time, 
         customer_id, 
+        admin_id,
         pet_image)
         VALUES 
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -92,6 +93,7 @@ class Appointment {
         this.#gender,
         this.#date_n_time,
         this.#customer_id,
+        this.#admin_id,
         this.#image,
       ]);
 
