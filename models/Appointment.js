@@ -28,7 +28,7 @@ class Appointment {
     status = "",
     image = "",
     live_stream_id = "",
-    admin_id = "",
+    admin_id = null,
   }) {
     this.#pet_name = pet_name;
     this.#pet_type = pet_type;
