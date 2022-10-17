@@ -30,7 +30,7 @@ class Admin {
 
     getAllAdmin = async () => {
         try {
-            const selectQuery = `SELECT * FROM admin`;
+            const selectQuery = `SELECT id, firstname, lastname FROM admin`;
             const [result, _] = await poolConnection.execute(selectQuery);
 
             return result
