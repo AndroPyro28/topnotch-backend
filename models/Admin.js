@@ -32,6 +32,8 @@ class Admin {
         try {
             const selectQuery = `SELECT * FROM admin`;
             const [result, _] = await  poolConnection.execute(selectQuery);
+            console.log(result);
+
             return result
         } catch (error) {
             console.error(error)
