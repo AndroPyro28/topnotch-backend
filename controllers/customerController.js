@@ -551,7 +551,6 @@ module.exports.getAllAdmin = async (req, res) => {
   try {
     const adminModel = new Admin({});
     const result = await adminModel.getAllAdmin({});
-    console.log(result);
     return res.status(200).json({
       data: result,
       success: true
