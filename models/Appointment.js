@@ -144,7 +144,7 @@ class Appointment {
       INNER JOIN customer
       ON customer.id = appointments.customer_id
       INNER JOIN admin
-      ON appointment.admin_id = admin.id
+      ON appointments.admin_id = admin.id
       LEFT JOIN live_streams
       ON appointments.id = live_streams.appointment_id
       WHERE appointments.id = ?`;
