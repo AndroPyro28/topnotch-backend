@@ -91,9 +91,10 @@ module.exports.updateInfo = async (req, res) => {
         "topnotch_profilepic/eadlgosq2pioplvi6lfs"
     ) {
       deleteOneUser(req.body.values.user.profile_image_id);
-    } else {
-      throw new Error('Invalid File Type')
-    }
+    } 
+    // else {
+    //   throw new Error('Invalid File Type')
+    // }
 
     if (
       req.body.values?.profileImg?.length > 0 &&
