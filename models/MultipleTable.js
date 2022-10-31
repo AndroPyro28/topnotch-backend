@@ -108,7 +108,7 @@ class MultipleTable {
             const date = getDateToday()
             const selectQuery = `SELECT admin_id, MAX(admin_id) as numberOfAdminAppointments 
             FROM appointments GROUP BY admin_id
-            HAVING SUM`;
+            `;
             const [result, _] = await poolConnection.query(selectQuery)
             return result;
         } catch (error) {
