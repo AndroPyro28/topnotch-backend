@@ -105,16 +105,18 @@ class MultipleTable {
 
     getEmployeeOfTheMonth = async () => {
         try {
-            const date = getDateToday()
+            const date = new Date();
+            const month = date.getMonth();
+            const year = date.getFullYear();
             const selectQuery = `SELECT count(appointments.admin_id) as allAppointments
             FROM appointments
             LEFT JOIN admin
             ON admin.id = appointments.admin_id
-            WHERE appointments.date_n_time LIKE ?
+            WHERE YEAR(appointments.date_n_time) = ? AND MONTH(appointments.date_n_time) = ?
             GROUP BY appointments.admin_id 
             LIMIT 1
             `;
-            const [result, _] = await poolConnection.query(selectQuery, [`%${date}%`])
+            const [result, _] = await poolConnection.query(selectQuery, [year, month])
             return result;
         } catch (error) {
             console.error(error)
