@@ -106,7 +106,7 @@ class MultipleTable {
     getEmployeeOfTheMonth = async () => {
         try {
             const date = getDateToday()
-            const selectQuery = `SELECT count(appointments.*) 
+            const selectQuery = `SELECT count(appointments.*) as allAppointments
             FROM appointments
             LEFT JOIN admin
             ON admin.id = appointments.admin_id
