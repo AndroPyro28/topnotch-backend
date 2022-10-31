@@ -151,3 +151,12 @@ module.exports.updatePassword = async (req, res) => {
     });
   }
 }
+
+module.exports.getEmployeeOfTheMonth = async (req, res) => {
+  try {
+    const multipleQuery = new MultipleTable();
+    
+  } catch (error) {
+    
+  }
+}

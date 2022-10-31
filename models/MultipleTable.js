@@ -102,6 +102,17 @@ class MultipleTable {
             console.error(error)
         }
     }
+
+    getEmployeeOfTheMonth = async () => {
+        try {
+            const date = getDateToday()
+
+            const selectQuery = `SELECT admin_id, SUM(admin_id) as numberOfAdminAppointments 
+            FROM appointments GROUP BY admin_id`
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 
 module.exports = MultipleTable;
