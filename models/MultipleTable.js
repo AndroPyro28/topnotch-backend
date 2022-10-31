@@ -112,11 +112,10 @@ class MultipleTable {
             FROM appointments
             INNER JOIN admin
             ON admin.id = appointments.admin_id
-            WHERE appointments.date_n_time LIKE ?
             GROUP BY appointments.admin_id
             LIMIT 3
             `;
-            const [result, _] = await poolConnection.query(selectQuery, [`%${year}-${month < 10 ? `0${month}` : month}%`])
+            const [result, _] = await poolConnection.query(selectQuery, [])
             return result;
         } catch (error) {
             console.error(error)
