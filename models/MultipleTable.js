@@ -108,7 +108,7 @@ class MultipleTable {
             const date = new Date();
             const month = date.getMonth();
             const year = date.getFullYear();
-            const selectQuery = `SELECT admin.email, count(appointments.admin_id) as allAppointments
+            const selectQuery = `SELECT admin.email, count(appointments.admin_id) as appointmentCounts
             FROM appointments
             INNER JOIN admin
             ON admin.id = appointments.admin_id
