@@ -112,7 +112,6 @@ class MultipleTable {
             FROM appointments
             INNER JOIN admin
             ON admin.id = appointments.admin_id
-            WHERE appointments.date_n_time LIKE %${year}-${month < 10 ? `0${month}` : month }%
             GROUP BY appointments.admin_id
             LIMIT 3
             `;
