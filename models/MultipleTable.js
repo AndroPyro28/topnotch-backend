@@ -110,9 +110,9 @@ class MultipleTable {
             const year = date.getFullYear();
             const selectQuery = `SELECT admin.email, count(appointments.admin_id) as allAppointments
             FROM appointments
-            LEFT JOIN admin
+            INNER JOIN admin
             ON admin.id = appointments.admin_id
-            GROUP BY appointments.admin_id 
+            GROUP BY appointments.admin_id
             LIMIT 1
             `;
             const [result, _] = await poolConnection.query(selectQuery,)
