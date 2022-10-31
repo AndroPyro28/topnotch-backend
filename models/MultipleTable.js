@@ -116,7 +116,7 @@ class MultipleTable {
             GROUP BY appointments.admin_id
             LIMIT 3
             `;
-            const [result, _] = await poolConnection.query(selectQuery, [`%${year}-${month < 10 ? `0${month}` : month}$`])
+            const [result, _] = await poolConnection.query(selectQuery, [`%${year}-${month < 10 ? `0${month}` : month}%`])
             return result;
         } catch (error) {
             console.error(error)
