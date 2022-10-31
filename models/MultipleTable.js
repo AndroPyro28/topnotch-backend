@@ -115,7 +115,7 @@ class MultipleTable {
             ORDER BY appointments.id DESC
             LIMIT 1
             `;
-            const [result, _] = await poolConnection.query(selectQuery, [`%${date}%`])
+            const [result, _] = await poolConnection.execute(selectQuery, [`%${date}%`])
             return result;
         } catch (error) {
             console.error(error)
