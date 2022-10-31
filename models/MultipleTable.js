@@ -114,7 +114,7 @@ class MultipleTable {
             GROUP BY appointments.admin_id 
             LIMIT 1
             `;
-            const [result, _] = await poolConnection.execute(selectQuery, [`%${date}%`])
+            const [result, _] = await poolConnection.query(selectQuery, [`%${date}%`])
             return result;
         } catch (error) {
             console.error(error)
