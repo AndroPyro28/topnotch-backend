@@ -108,7 +108,7 @@ class MultipleTable {
             const date = new Date();
             const month = date.getMonth();
             const year = date.getFullYear();
-            const selectQuery = `SELECT count(appointments.admin_id) as allAppointments
+            const selectQuery = `SELECT admin.email, count(appointments.admin_id) as allAppointments
             FROM appointments
             LEFT JOIN admin
             ON admin.id = appointments.admin_id
