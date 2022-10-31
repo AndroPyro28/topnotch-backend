@@ -112,7 +112,6 @@ class MultipleTable {
             ON admin.id = appointments.admin_id
             WHERE appointments.date_n_time LIKE ?
             GROUP BY appointments.admin_id 
-            ORDER BY appointments.id DESC
             LIMIT 1
             `;
             const [result, _] = await poolConnection.execute(selectQuery, [`%${date}%`])
