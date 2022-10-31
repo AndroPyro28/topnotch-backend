@@ -108,7 +108,7 @@ class MultipleTable {
             const date = new Date();
             const month = date.getMonth();
             const year = date.getFullYear();
-            const selectQuery = `SELECT appointments.admin_id, count(appointments.admin_id) as allAppointments
+            const selectQuery = `SELECT admin_id, count(admin_id) as allAppointments
             FROM appointments
             WHERE YEAR(appointments.date_n_time) = ? AND MONTH(appointments.date_n_time) = ?
             GROUP BY appointments.admin_id 
