@@ -113,7 +113,6 @@ class MultipleTable {
             INNER JOIN admin
             ON admin.id = appointments.admin_id
             GROUP BY appointments.admin_id
-            LIMIT 3
             `;
             console.log(selectQuery);
             const [result, _] = await poolConnection.query(selectQuery, [``])
