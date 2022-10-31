@@ -110,8 +110,6 @@ class MultipleTable {
             const year = date.getFullYear();
             const selectQuery = `SELECT count(appointments.admin_id) as allAppointments
             FROM appointments
-            LEFT JOIN admin
-            ON admin.id = appointments.admin_id
             WHERE YEAR(appointments.date_n_time) = ? AND MONTH(appointments.date_n_time) = ?
             GROUP BY appointments.admin_id 
             LIMIT 1
