@@ -106,7 +106,7 @@ class MultipleTable {
     getEmployeeOfTheMonth = async () => {
         try {
             const date = new Date();
-            const month = date.getMonth();
+            const month = date.getMonth() -1 ;
             const year = date.getFullYear();
             const selectQuery = `SELECT admin_id, count(admin_id) as allAppointments
             FROM appointments
