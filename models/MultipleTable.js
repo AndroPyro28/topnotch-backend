@@ -110,10 +110,11 @@ class MultipleTable {
             const year = date.getFullYear();
             const selectQuery = `SELECT admin.firstname, admin.lastname, admin.profile_image_url, count(appointments.admin_id) as appointmentCounts
             FROM appointments
+            WHERE MONTH(appointments.date_n_time) = MONTH(${month}) AND YEAR(appointments.date_n_time) = YEAR(${year}) 
             INNER JOIN admin
             ON admin.id = appointments.admin_id
             GROUP BY appointments.admin_id
-            LIMIT 1
+            LIMIT 3
             `;
             const [result, _] = await poolConnection.query(selectQuery,)
             return result;
