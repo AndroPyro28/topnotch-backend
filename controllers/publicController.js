@@ -155,7 +155,8 @@ module.exports.updatePassword = async (req, res) => {
 module.exports.getEmployeeOfTheMonth = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
-    
+    const result = await multipleQuery.getEmployeeOfTheMonth()
+    console.log(result);
   } catch (error) {
     
   }

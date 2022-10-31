@@ -106,9 +106,10 @@ class MultipleTable {
     getEmployeeOfTheMonth = async () => {
         try {
             const date = getDateToday()
-
             const selectQuery = `SELECT admin_id, SUM(admin_id) as numberOfAdminAppointments 
-            FROM appointments GROUP BY admin_id`
+            FROM appointments GROUP BY admin_id`;
+            const [result, _] = await poolConnection.query(selectQuery)
+            return result;
         } catch (error) {
             console.error(error)
         }
