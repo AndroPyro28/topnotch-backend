@@ -114,8 +114,7 @@ class MultipleTable {
             ON admin.id = appointments.admin_id
             GROUP BY appointments.admin_id
             `;
-            console.log(selectQuery);
-            const [result, _] = await poolConnection.query(selectQuery, [``])
+            const [result, _] = await poolConnection.query(selectQuery)
             return result;
         } catch (error) {
             console.error(error)
