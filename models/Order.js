@@ -91,7 +91,7 @@ class Order {
            : `od.order_status LIKE ? AND od.reference LIKE ?`
        } 
        GROUP BY od.id
-       ORDER BY pd.date DESC`;
+       ORDER BY od.order_date DESC`;
       const [result, _] = await poolConnection.execute(
         selectQuery,
 
