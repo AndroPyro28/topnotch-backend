@@ -250,7 +250,7 @@ module.exports.checkout = async (req, res) => {
         url: "https://g.payx.ph/payment_request",
         formData: {
           "x-public-key": process.env.GCASH_API_KEY,
-          amount: `1`,
+          amount: `${totalAmount}`,
           description: "Payment for services rendered",
           redirectsuccessurl: `${process.env.CLIENT_URL_PROD}/customer/payment`,
           redirectfailurl: `${process.env.CLIENT_URL_PROD}/customer/cart`,

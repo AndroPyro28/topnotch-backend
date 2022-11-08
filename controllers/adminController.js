@@ -355,8 +355,6 @@ module.exports.dashboardData = async (req, res) => {
         } else {
           totalTransactionsPerMonth[currentMonth] += 1;
         }
-        
-        
         if (salesOfTheMonth == null || salesOfTheMonth == undefined) {
           salesOfTheMonth = 0;
         }
