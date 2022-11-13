@@ -81,8 +81,9 @@ class Feedback {
       INNER JOIN customer c
       ON c.id = f.customer_id
       LEFT JOIN comments co
+      ON co.feedback_id = f.id
       LEFT JOIN admin a
-      ON co.feedback_id = f.id AND a.id = co.admin_id
+      ON a.id = co.admin_id
       GROUP BY f.id
       ORDER BY f.ratings DESC
       LIMIT 3
