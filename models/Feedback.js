@@ -76,6 +76,7 @@ class Feedback {
       c.firstname,
       c.lastname,
       JSON_ARRAYAGG(JSON_OBJECT('id', co.id, 'comment', co.comment, 'admin_image', a.profile_image_url, 'admin_firstname', a.firstname, 'admin_lastname', a.lastname)) as admin_comments
+      
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
@@ -84,9 +85,8 @@ class Feedback {
       ON co.feedback_id = f.id AND a.id = co.admin_id
       GROUP BY f.id
       ORDER BY f.ratings DESC
-      LIMIT 3
       `;
-      const [result, _] = await poolConnection.query(selectQuery, [true]);
+      const [result, _] = await poolConnection.query(selectQuery, []);
       console.log(result);
       return result;
     } catch (error) {
