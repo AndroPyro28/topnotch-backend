@@ -84,8 +84,8 @@ class Feedback {
       ON a.id = co.admin_id
       LEFT JOIN comments co
       ON co.feedback_id = f.id 
-      GROUP BY f.id
       ORDER BY f.ratings DESC
+      LIMIT 3
       `;
       // const selectQuery = `SELECT * FROM comments`
       const [result, _] = await poolConnection.query(selectQuery, []);
