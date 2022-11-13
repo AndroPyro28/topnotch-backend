@@ -80,10 +80,10 @@ class Feedback {
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
-      INNER JOIN comments co
-      ON co.feedback_id = f.id 
-      INNER JOIN admin a
-      ON a.id = co.admin_id
+      LEFT JOIN comments co
+      LEFT JOIN admin a
+      ON co.feedback_id = f.id AND a.id = co.admin_id
+      GROUP BY f.id
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
