@@ -90,8 +90,10 @@ class Feedback {
       `;
       // const selectQuery = `SELECT * FROM comments`
       const [result, _] = await poolConnection.query(selectQuery, []);
-      console.log(result);
-      return result;
+      return result.map(feedback => {
+        feedback.admin_comments = feedback.admin_comments.filter(comment => comment.id != null);
+        return feedback;
+      })
     } catch (error) {
       console.log(error.message);
     }
