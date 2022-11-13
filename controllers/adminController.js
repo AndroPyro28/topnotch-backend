@@ -513,6 +513,7 @@ module.exports.comment = async (req, res) => {
   try {
     const {id} = req.currentUser;
     const {feedback_id, comment} = req.body;
+    console.log({feedback_id, comment, admin: id},);
     const commentModel = new Comments({
       feedback_id,
       comment,
