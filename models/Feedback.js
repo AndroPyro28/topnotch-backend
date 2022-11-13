@@ -82,6 +82,7 @@ class Feedback {
       LEFT JOIN admin a
       LEFT JOIN comments co
       ON co.feedback_id = f.id AND a.id = co.admin_id
+      GROUP BY f.id
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
