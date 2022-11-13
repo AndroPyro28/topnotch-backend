@@ -85,7 +85,7 @@ class Feedback {
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
-      const [result, _] = await poolConnection.execute(selectQuery, [true]);
+      const [result, _] = await poolConnection.query(selectQuery, [true]);
       console.log(result);
       return result;
     } catch (error) {
