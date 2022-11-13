@@ -67,27 +67,27 @@ class Feedback {
 
   getFirstThreeFeedback = async () => {
     try {
-      // const selectQuery = `SELECT 
-      // f.ratings,
-      // f.comments,
-      // f.id,
-      // f.pin,
-      // c.profile_image_url,
-      // c.firstname,
-      // c.lastname,
-      // JSON_ARRAYAGG(JSON_OBJECT('id', co.id, 'comment', co.comment, 'admin_image', a.profile_image_url, 'admin_firstname', a.firstname, 'admin_lastname', a.lastname)) as admin_comments
+      const selectQuery = `SELECT 
+      f.ratings,
+      f.comments,
+      f.id,
+      f.pin,
+      c.profile_image_url,
+      c.firstname,
+      c.lastname,
+      JSON_ARRAYAGG(JSON_OBJECT('id', co.id, 'comment', co.comment, 'admin_image', a.profile_image_url, 'admin_firstname', a.firstname, 'admin_lastname', a.lastname)) as admin_comments
       
-      // FROM feedback f
-      // INNER JOIN customer c
-      // ON c.id = f.customer_id
-      // LEFT JOIN admin a
-      // ON a.id = co.admin_id
-      // LEFT JOIN comments co
-      // ON co.feedback_id = f.id 
-      // GROUP BY f.id
-      // ORDER BY f.ratings DESC
-      // `;
-      const selectQuery = `SELECT * FROM comments`
+      FROM feedback f
+      INNER JOIN customer c
+      ON c.id = f.customer_id
+      LEFT JOIN admin a
+      ON a.id = co.admin_id
+      LEFT JOIN comments co
+      ON co.feedback_id = f.id 
+      GROUP BY f.id
+      ORDER BY f.ratings DESC
+      `;
+      // const selectQuery = `SELECT * FROM comments`
       const [result, _] = await poolConnection.query(selectQuery, []);
       console.log(result);
       return result;
