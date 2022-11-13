@@ -81,7 +81,7 @@ class Feedback {
       ON c.id = f.customer_id
       LEFT JOIN comments co
       ON co.feedback_id = f.id
-      LEFT JOIN admin a
+      INNER JOIN admin a
       ON a.id = co.admin_id
       ORDER BY f.ratings DESC
       LIMIT 3
