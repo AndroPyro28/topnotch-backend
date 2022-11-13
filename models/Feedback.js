@@ -86,7 +86,7 @@ class Feedback {
       LIMIT 3
       `;
       const [result, _] = await poolConnection.execute(selectQuery, [true]);
-
+      console.log(result);
       return result;
     } catch (error) {
       console.log(error.message);
