@@ -79,7 +79,7 @@ class Feedback {
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
-      LEFT JOIN comments co
+      INNER JOIN comments co
       ON co.feedback_id = f.id
       INNER JOIN admin a
       ON a.id = co.admin_id
