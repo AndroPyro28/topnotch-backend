@@ -74,10 +74,15 @@ class Feedback {
       f.pin,
       c.profile_image_url,
       c.firstname,
-      c.lastname
+      c.lastname,
+      JSON_ARRAYAGG(JSON_OBJECT('id', co.id, 'comment', co.comment, 'admin_image', a.profile_image_url, 'admin_firstname', a.firstname, 'admin_lastname', a.lastname)) as admin_comments
       FROM feedback f
       INNER JOIN customer c
       ON c.id = f.customer_id
+      LEFT JOIN comments co
+      ON co.feedback_id = f.id
+      LEFT JOIN admin a
+      ON a.id = co.admin_id
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
