@@ -88,7 +88,6 @@ class Feedback {
       ORDER BY f.ratings DESC
       LIMIT 3
       `;
-      // const selectQuery = `SELECT * FROM comments`
       const [result, _] = await poolConnection.query(selectQuery, []);
       return result.map(feedback => {
         feedback.admin_comments = feedback.admin_comments.filter(comment => comment.id != null);
