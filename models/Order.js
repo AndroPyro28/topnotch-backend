@@ -216,8 +216,8 @@ class Order {
       if(order.length > 0 && order[0].delivery_status <= 2) {
         const updateQuery = `UPDATE order_details SET order_status = ?, delivery_status = ?, cancel_message = ? WHERE id = ?;`;
         const [result, _] = await poolConnection.execute(updateQuery, ['cancelled', -1, id, reason]);
-        return result;
         console.log(result)
+        return result;
       } else {
         throw new Error('cannot cancel order')
       }
