@@ -215,7 +215,7 @@ class Order {
       const order = await this.findOrderById(id);
       if(order.length > 0 && order[0].delivery_status <= 2) {
         const updateQuery = `UPDATE order_details SET order_status = ?, delivery_status = ?, cancel_message = ? WHERE id = ?;`;
-        const [result, _] = await poolConnection.execute(updateQuery, ['cancelled', -1, id, reason]);
+        const [result, _] = await poolConnection.execute(updateQuery, ['cancelled', -1, reason, id]);
         console.log(result)
         return result;
       } else {

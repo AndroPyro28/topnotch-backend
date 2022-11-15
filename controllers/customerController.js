@@ -534,8 +534,6 @@ module.exports.cancelOrder = async (req, res) => {
   try {
    const {id} = req.params;
     const {reason} = req.body.values;
-    console.log(req.body.values, req.params)
-    console.log(reason, id)
    const OrderModel = new Order({});
    const result = await OrderModel.cancelOrder(id, reason);
    if(!result) {
