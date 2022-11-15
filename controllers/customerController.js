@@ -537,7 +537,6 @@ module.exports.cancelOrder = async (req, res) => {
 
    const OrderModel = new Order({});
    const result = await OrderModel.cancelOrder(id, reason);
-  
    if(!result) {
     throw new Error('Order did not cancelled');
    }
