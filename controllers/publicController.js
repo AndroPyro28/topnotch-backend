@@ -184,6 +184,7 @@ module.exports.getPinnedEmployee = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
     const res = await multipleQuery.getPinnedEmployees()
+    console.log(res)
     return res.status(200).json(res);
   } catch (error) {
     console.error(error)
