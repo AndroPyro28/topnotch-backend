@@ -114,7 +114,6 @@ class MultipleTable {
             INNER JOIN admin
             ON admin.id = appointments.admin_id
             GROUP BY appointments.admin_id
-            ORDER BY appointments.date_n_time DESC
             `;
             const [result, _] = await poolConnection.query(selectQuery)
             return result;
