@@ -38,6 +38,16 @@ class Admin {
             console.error(error)
         }
     }
+
+    pinEmployee = async (id, pin) => {
+        try {
+            const updateQuery = `UPDATE admin SET pin = ? WHERE id = ?`;
+            const [result, _] = await poolConnection.execute(updateQuery, [pin, id]);
+            return result
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 
 module.exports = Admin

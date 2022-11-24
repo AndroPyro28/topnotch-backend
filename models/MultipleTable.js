@@ -112,6 +112,7 @@ class MultipleTable {
                 admin.firstname, 
                 admin.lastname, 
                 admin.profile_image_url,
+                admin.pin,
                 JSON_ARRAYAGG(JSON_OBJECT('id', appointments.id, 'date_n_time', appointments.date_n_time)) as appointment_activities
                 FROM appointments
                 INNER JOIN admin
