@@ -156,6 +156,7 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
     const result = await multipleQuery.getEmployeeOfTheMonth()
+    console.log(result);
     return res.status(200).json({
       data:result,
       success: true
