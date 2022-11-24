@@ -161,6 +161,7 @@ module.exports.orderNextStage = async (req, res) => {
       msg: "Order proceeded to next stage",
       success: true,
     });
+    
   } catch (error) {
     return res.status(200).json({
       msg: error.message,
