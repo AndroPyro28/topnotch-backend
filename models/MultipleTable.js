@@ -105,9 +105,7 @@ class MultipleTable {
 
     getEmployeeOfTheMonth = async () => {
         try {
-            const date = new Date();
-            const month = date.getMonth();
-            const year = date.getFullYear();
+            
             const selectQuery = `
             SELECT 
                 admin.firstname, 

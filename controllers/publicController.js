@@ -156,9 +156,17 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
     const result = await multipleQuery.getEmployeeOfTheMonth()
-    console.log(result);
+
+    const todayMonth = new Date().getMonth();
+    const todayYear = new Date().getFullYear();
+    const employees = result.map((employee) => {
+      return employee.appointment_activities.filter(appointments => {
+        const date = new Date(appointments.date_n_time);
+          return todayMonth == date.getMonth() && todayYear == date.getFullYear()
+      })
+    })
     return res.status(200).json({
-      data:result,
+      data:employees,
       success: true
     })
   } catch (error) {
