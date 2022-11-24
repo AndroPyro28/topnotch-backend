@@ -529,7 +529,7 @@ module.exports.pinEmployee = async (req, res) => {
   try {
     const {id} = req.params;
     const pin = req.body.values;
-
+    console.log(pin, id)
     const adminModel = new Admin({})
     const res = await adminModel.pinEmployee(id, pin);
     console.log(res)
