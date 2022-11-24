@@ -509,11 +509,12 @@ module.exports.getAllOrderActivities = async (req, res) => {
 module.exports.submitFeedback = async (req, res) => {
   try {
     const {id} = req.currentUser;
-    const {paws, comments} = req.body.values;
+    const {paws, comments, image} = req.body.values;
     const feedbackModel = new Feedback({
       customer_id: id,
       ratings: paws,
-      comments
+      comments,
+      image
     })
     const result = await feedbackModel.submitFeedback();
 
