@@ -75,6 +75,7 @@ class Feedback {
       f.comments,
       f.id,
       f.pin,
+      f.image_url,
       c.profile_image_url,
       c.firstname,
       c.lastname,
@@ -89,7 +90,6 @@ class Feedback {
       ON a.id = co.admin_id
       GROUP BY f.id
       ORDER BY f.ratings DESC
-      LIMIT 3
       `;
       const [result, _] = await poolConnection.query(selectQuery, []);
       return result.map(feedback => {
