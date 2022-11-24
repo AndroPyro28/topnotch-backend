@@ -108,6 +108,7 @@ class MultipleTable {
             
             const selectQuery = `
             SELECT 
+                admin.id,
                 admin.firstname, 
                 admin.lastname, 
                 admin.profile_image_url,
