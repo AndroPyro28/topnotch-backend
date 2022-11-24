@@ -529,11 +529,9 @@ module.exports.pinEmployee = async (req, res) => {
   try {
     const {id} = req.params;
     const pin = req.body.values;
-    console.log(pin, id)
     const adminModel = new Admin({})
-    const res = await adminModel.pinEmployee(id, pin);
-    console.log(res)
-    return res.status(200).json(res)
+    const result = await adminModel.pinEmployee(id, pin);
+    return res.status(200).json(result)
   } catch (error) {
     console.error(error)
   }
