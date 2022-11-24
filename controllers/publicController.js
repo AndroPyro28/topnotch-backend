@@ -161,10 +161,11 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
     const todayYear = new Date().getFullYear();
     console.log(result)
     const employees = result.map((employee) => {
-      return employee.appointment_activities.filter(appointments => {
+      employee.appointment_activities = employee.appointment_activities.filter(appointments => {
         const date = new Date(appointments.date_n_time);
           return todayMonth == date.getMonth() && todayYear == date.getFullYear()
       })
+      return employee;
     })
     return res.status(200).json({
       data:employees,
