@@ -109,7 +109,8 @@ class MultipleTable {
             const month = date.getMonth();
             const year = date.getFullYear();
             const selectQuery = `
-            SELECT admin.firstname, admin.lastname, admin.profile_image_url, appointments.date_n_time, count(appointments.admin_id) as appointmentCounts
+            SELECT admin.firstname, admin.lastname, admin.profile_image_url, 
+            JSON_ARRAYAGG(JSON_OBJECT('id', appointments.id, 'date_n_time', appointments.date_n_time)) as appointment_activities
             FROM appointments
             INNER JOIN admin
             ON admin.id = appointments.admin_id
