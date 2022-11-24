@@ -139,7 +139,7 @@ class MultipleTable {
 
   getPinnedEmployees = async () => {
     try {
-      const selectQuery = `SELECT admin.id, admin.firstname, admin.lastname, admin.profile_image_url from admin WHERE pin = ?`;
+      const selectQuery = `SELECT admin.id, admin.firstname, admin.lastname, admin.profile_image_url from admin WHERE pin = ? LIMIT 3`;
       const [result, _] = await poolConnection.query(selectQuery, [true]);
       return result;
     } catch (error) {
