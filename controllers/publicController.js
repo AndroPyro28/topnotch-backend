@@ -159,6 +159,7 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
 
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
+    console.log(result)
     const employees = result.map((employee) => {
       return employee.appointment_activities.filter(appointments => {
         const date = new Date(appointments.date_n_time);
