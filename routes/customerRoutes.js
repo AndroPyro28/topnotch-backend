@@ -25,4 +25,5 @@ router.get('/getAllOrderActivities', verifyUser, customerController.getAllOrderA
 router.post('/submitFeedback', verifyUser, customerController.submitFeedback)
 router.patch('/cancelOrder/:id', verifyUser, customerController.cancelOrder);
 router.get('/getAllAdmin', verifyUser, customerController.getAllAdmin);
+router.get('/getAppointments', verifyUser, customerController.getAppointments);
 module.exports = router;

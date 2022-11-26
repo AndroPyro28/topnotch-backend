@@ -575,6 +575,22 @@ module.exports.getAllAdmin = async (req, res) => {
     });
   }
 }
+module.exports.getAppointments = async (req, res) => {
+  try {
+    const {id} = req.currentUser;
+
+    const appointmentModel = new Appointment({
+      customer_id: id
+    });
+
+    const result = await appointmentModel.getAppointmentsByCustomerId();
+
+    console.log(result)
+
+  } catch (error) {
+    console.error(error)
+  }
+}
 module.exports.paymentsuccess = async (req, res) => {
   console.log(':::::GCASH API POST::::', req.body)
 }
