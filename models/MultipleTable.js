@@ -114,6 +114,16 @@ class MultipleTable {
       console.error(error);
     }
   };
+  getAssignedMonth = async () => {
+    try {
+      const selectQuery = `SELECT * FROM emp_month`;
+
+      const [result, _] = await poolConnection.execute(selectQuery);
+      return result[0]
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   getEmployeeOfTheMonth = async () => {
     try {
