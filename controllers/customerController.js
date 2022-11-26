@@ -596,9 +596,9 @@ module.exports.getAppointments = async (req, res) => {
 module.exports.updateSchedule = async (req, res) => {
   try {
     const {id} = req.params;
-    const {id: customerId} = req.currentUser;
-
-    console.log({ id, customerId });
+    const {id: customerId} = req?.currentUser;
+    const {appointment} = req.body.values;
+    console.log({ id, customerId, appointment });
     
   } catch (error) {
     console.error(error)
