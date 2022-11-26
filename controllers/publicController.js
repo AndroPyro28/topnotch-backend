@@ -183,8 +183,9 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
 module.exports.getPinnedEmployee = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
-    const result = await multipleQuery.getPinnedEmployees()
-    return res.status(200).json(result);
+    const employees = await multipleQuery.getPinnedEmployees()
+    const month = await multipleQuery.getAssignedMonth()
+    return res.status(200).json({data:{employees, month}});
   } catch (error) {
     console.error(error)
   }

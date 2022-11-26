@@ -161,9 +161,8 @@ class MultipleTable {
     try {
       const UPDATE = `
       UPDATE emp_month SET month = ?;
-      UPDATE admin SET pin = ?;
       `;
-      const [result, _] = await poolConnection.query(UPDATE, [month, false]);
+      const [result, _] = await poolConnection.query(UPDATE, [month]);
       return result;
     } catch (error) {
       console.error(error);
