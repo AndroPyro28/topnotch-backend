@@ -575,6 +575,7 @@ module.exports.getAllAdmin = async (req, res) => {
     });
   }
 }
+
 module.exports.getAppointments = async (req, res) => {
   try {
     const {id} = req.currentUser;
@@ -585,8 +586,7 @@ module.exports.getAppointments = async (req, res) => {
 
     const result = await appointmentModel.getAppointmentsByCustomerId();
 
-    console.log(result)
-
+    return res.status(200).json(result)
   } catch (error) {
     console.error(error)
   }
