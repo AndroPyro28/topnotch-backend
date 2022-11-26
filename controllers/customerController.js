@@ -579,7 +579,6 @@ module.exports.getAllAdmin = async (req, res) => {
 module.exports.getAppointments = async (req, res) => {
   try {
     const {id} = req.currentUser;
-
     const appointmentModel = new Appointment({
       customer_id: id
     });
@@ -593,6 +592,19 @@ module.exports.getAppointments = async (req, res) => {
     console.error(error)
   }
 }
+
+module.exports.updateSchedule = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const {id: customerId} = req.curentUser;
+
+    console.log({ id, customerId });
+    
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 module.exports.paymentsuccess = async (req, res) => {
   console.log(':::::GCASH API POST::::', req.body)
 }

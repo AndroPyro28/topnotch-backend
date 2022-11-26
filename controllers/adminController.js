@@ -148,8 +148,8 @@ module.exports.orderNextStage = async (req, res) => {
     if (deliveryStatus == 5) {
       throw new Error("someting went wrong");
     }
+    
     sendTextMessageByStatus(deliveryStatus, data, reference);
-
     const orderModel = new Order({
       reference,
       order_status: orderStatus,
