@@ -163,13 +163,13 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
     const employees = result.map((employee) => {
       employee.appointment_activities = employee.appointment_activities.filter(appointments => {
         const date = new Date(appointments.date_n_time);
-          return empMonth?.month || todayMonth == date.getMonth() && todayYear == date.getFullYear()
+          return empMonth?.month == date.getMonth() && todayYear == date.getFullYear()
       })
       return employee;
     })
     const sortedEmployees = employees.sort((a, b) => b.appointment_activities.length - a.appointment_activities.length)
     return res.status(200).json({
-      data:{sortedEmployees,empMonth: 10},
+      data:{sortedEmployees,empMonth},
       success: true
     })
   } catch (error) {
