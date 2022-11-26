@@ -14,6 +14,7 @@ const { getDateToday } = require("../helpers/DateFormatter");
 const Feedback = require('../models/Feedback')
 const {v4: uudi} = require('uuid');
 const Admin = require("../models/Admin");
+
 module.exports.signup = async (req, res) => {
   try {
     const customer = new Customer(req.body.values);
@@ -598,8 +599,9 @@ module.exports.updateSchedule = async (req, res) => {
     const {id} = req.params;
     const {id: customerId} = req?.currentUser;
     const {appointment} = req.body.values;
-    console.log({ id, customerId, appointment });
-    
+    const appointmentModel = new Appointment(appointment);
+    const result = await appointmentModel.updateScheduleByCustomer();
+
   } catch (error) {
     console.error(error)
   }
