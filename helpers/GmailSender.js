@@ -9,7 +9,7 @@ const mailTransporter = nodemailer.createTransport({
   },
 });
 
-module.exports.sendEmailByAppointment = (appointment, customer, status) => {
+const sendEmailByAppointment = (appointment, customer, status) => {
   let {firstname, lastname, contact, email} = customer;
 
   const {date_n_time, appointment_type} = appointment;
@@ -69,7 +69,7 @@ module.exports.sendEmailByAppointment = (appointment, customer, status) => {
 };
 
 
-module.exports.sendEmailByStatus = (status, data, reference) => {
+const sendEmailByStatus = (status, data, reference) => {
   let textMsg = "";
   let { firstname, lastname } = data.customer;
   let {contact, email} = data;
@@ -195,4 +195,4 @@ const gmailNotifStream = (customers) => {
   }
 }
 
-module.exports = {gmailSender, gmailNotifStream}
+module.exports = {gmailSender, gmailNotifStream, sendEmailByAppointment, sendEmailByStatus}
