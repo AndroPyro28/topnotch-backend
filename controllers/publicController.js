@@ -156,15 +156,14 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
   try {
     const multipleQuery = new MultipleTable();
     const result = await multipleQuery.getEmployeeOfTheMonth()
-    const month = await multipleQuery.getAssignedMonth()
-    console.log(month)
-    
+    const empMonth = await multipleQuery.getAssignedMonth()
+
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
     const employees = result.map((employee) => {
       employee.appointment_activities = employee.appointment_activities.filter(appointments => {
         const date = new Date(appointments.date_n_time);
-          return todayMonth == date.getMonth() && todayYear == date.getFullYear()
+          return empMonth.month == date.getMonth() && todayYear == date.getFullYear()
       })
       return employee;
     })
