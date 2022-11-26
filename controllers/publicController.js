@@ -189,3 +189,14 @@ module.exports.getPinnedEmployee = async (req, res) => {
     console.error(error)
   }
 }
+
+module.exports.setMonth = async (req, res) => {
+  try {
+    const multipleQuery = new MultipleTable();
+    const result = await multipleQuery.setMonth(req.body.values.month)
+    
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error(error)
+  }
+}

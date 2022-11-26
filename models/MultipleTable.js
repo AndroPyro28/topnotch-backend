@@ -156,6 +156,16 @@ class MultipleTable {
       console.error(first);
     }
   };
+
+  setMonth = async (month) => {
+    try {
+      const UPDATE = `UPDATE emp_month SET month = ?`;
+      const [result, _] = await poolConnection.query(UPDATE, [month]);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 module.exports = MultipleTable;
