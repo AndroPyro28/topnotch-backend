@@ -276,12 +276,12 @@ class Appointment {
     }
   }
 
-  updateScheduleByCustomer = async () => {
+  updateScheduleByCustomer = async (id) => {
     try {
       const updateQuery = `UPDATE appointments SET date_n_time = ? WHERE id = ?;`;
       const [result, _] = await poolConnection.execute(updateQuery, [
         this.#date_n_time,
-        this.#id,
+        id,
       ]);
       return result;
     } catch (error) {

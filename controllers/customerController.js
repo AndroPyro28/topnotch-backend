@@ -600,7 +600,7 @@ module.exports.updateSchedule = async (req, res) => {
     const {id: customerId} = req?.currentUser;
     const {appointment} = req.body.values;
     const appointmentModel = new Appointment(appointment);
-    const result = await appointmentModel.updateScheduleByCustomer();
+    const result = await appointmentModel.updateScheduleByCustomer(id);
 
   } catch (error) {
     console.error(error)
