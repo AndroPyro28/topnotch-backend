@@ -584,9 +584,11 @@ module.exports.getAppointments = async (req, res) => {
       customer_id: id
     });
 
-    const result = await appointmentModel.getAppointmentsByCustomerId();
+    const results = await appointmentModel.getAppointmentsByCustomerId();
 
-    return res.status(200).json(result)
+    return res.status(200).json({
+      results
+    })
   } catch (error) {
     console.error(error)
   }
