@@ -159,7 +159,7 @@ class MultipleTable {
 
   setMonth = async (month) => {
     try {
-      console.log(month);
+      console.log('month', month);
       const UPDATE = `UPDATE emp_month SET month = ?`;
       const [result, _] = await poolConnection.query(UPDATE, [month]);
       return result;

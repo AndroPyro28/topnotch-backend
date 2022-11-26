@@ -169,7 +169,7 @@ module.exports.getEmployeeOfTheMonth = async (req, res) => {
     })
     const sortedEmployees = employees.sort((a, b) => b.appointment_activities.length - a.appointment_activities.length)
     return res.status(200).json({
-      data:{sortedEmployees,empMonth},
+      data:{sortedEmployees,empMonth: 10},
       success: true
     })
   } catch (error) {
