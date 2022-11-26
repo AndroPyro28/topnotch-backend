@@ -82,7 +82,6 @@ module.exports.sendEmailByStatus = (status, data, reference) => {
     
     <small>-Top Notch Grooming Shop</small>
 </div>
-
 `;
   }
 
