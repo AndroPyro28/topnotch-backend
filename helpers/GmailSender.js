@@ -72,8 +72,8 @@ const sendEmailByAppointment = (appointment, customer, status) => {
 
 const sendEmailByStatus = (status, data, reference) => {
   let textMsg = "";
-  let { firstname, lastname } = data.customer;
-  let {contact, email} = data;
+  let { firstname, lastname, email } = data.customer;
+  let {contact, } = data;
 
   if (status == 1) {
     textMsg = `<div>
