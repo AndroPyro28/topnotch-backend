@@ -133,7 +133,7 @@ module.exports.updatePassword = async (req, res) => {
     }
     const {userinfo} = req.headers;
     const {userType} = JSON.parse(userinfo); 
-    const hashedPassword = await bcrypt.hash(password, 6);
+    const hashedPassword = userType === 'customer' ? await bcrypt.hash(password, 6) : password;
     const {id} = req.currentUser;
     const multipleQuery = new MultipleTable();
     const result = await multipleQuery.updateUserPassword(id, userType, hashedPassword)
