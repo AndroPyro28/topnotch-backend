@@ -283,7 +283,6 @@ class Appointment {
         this.#date_n_time,
         this.#id,
       ]);
-
       return result;
     } catch (error) {
       console.error(error)
